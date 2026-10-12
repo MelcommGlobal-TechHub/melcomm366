@@ -1,0 +1,1780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="description"
+    content="AI Africa Learning Hub helps learners explore artificial intelligence, build digital skills, and discover opportunities to create with AI."
+  >
+  <meta name="theme-color" content="#101828">
+
+  <title>AI Africa Learning Hub | Learn, Create and Innovate</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <link rel="stylesheet" href="style.css">
+
+  <link
+    rel="icon"
+    type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23101828'/%3E%3Ctext x='50' y='65' font-size='46' font-family='Arial' font-weight='bold' text-anchor='middle' fill='%236ee7b7'%3EAI%3C/text%3E%3C/svg%3E"
+  >
+
+  <style>
+    [hidden] {
+      display: none !important;
+    }
+
+    .lesson-player-modal,
+    .apply-modal,
+    .auth-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(8, 15, 30, 0.78);
+      backdrop-filter: blur(8px);
+      overflow-y: auto;
+    }
+
+    .lesson-player-panel,
+    .apply-modal-panel,
+    .auth-modal-panel {
+      position: relative;
+      width: min(100%, 900px);
+      max-height: 92vh;
+      overflow-y: auto;
+      border-radius: 20px;
+      background: #ffffff;
+      color: #101828;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+    }
+
+    .lesson-player-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 22px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .lesson-player-header h2 {
+      margin: 0;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      line-height: 1.4;
+    }
+
+    .lesson-player-close,
+    .modal-close-button {
+      display: inline-flex;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+      width: 42px;
+      height: 42px;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      background: #f9fafb;
+      color: #101828;
+      font-size: 1.5rem;
+      cursor: pointer;
+    }
+
+    .lesson-player-close:hover,
+    .modal-close-button:hover {
+      background: #eef2f7;
+    }
+
+    #youtubePlayerContainer {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: #080808;
+    }
+
+    #youtubePlayerContainer iframe,
+    #youtubePlayerContainer video {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    #youtubePlayer {
+      width: 100%;
+      height: 100%;
+    }
+
+    .youtube-external-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      padding: 16px 22px;
+      background: #f8fafc;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .youtube-external-copy {
+      flex: 1 1 220px;
+      color: #475467;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+
+    .youtube-external-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 44px;
+      padding: 11px 16px;
+      border-radius: 10px;
+      background: #e62117;
+      color: #ffffff;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .youtube-external-button:hover {
+      background: #c91c13;
+      transform: translateY(-1px);
+    }
+
+    .youtube-external-button:focus-visible,
+    .lesson-player-close:focus-visible,
+    .modal-close-button:focus-visible {
+      outline: 3px solid #6ee7b7;
+      outline-offset: 3px;
+    }
+
+    .lesson-player-information {
+      padding: 22px;
+    }
+
+    .lesson-player-information > p:first-child {
+      margin-top: 0;
+      color: #475467;
+      line-height: 1.7;
+    }
+
+    .lesson-watch-status {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 18px;
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .lesson-watch-track {
+      height: 8px;
+      margin-top: 10px;
+      overflow: hidden;
+      border-radius: 20px;
+      background: #e5e7eb;
+    }
+
+    #lessonWatchBar {
+      width: 0%;
+      height: 100%;
+      border-radius: inherit;
+      background: #10b981;
+      transition: width 0.3s ease;
+    }
+
+    .lesson-watch-note {
+      margin-bottom: 0;
+      color: #667085;
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+
+    .apply-modal-panel,
+    .auth-modal-panel {
+      width: min(100%, 560px);
+      padding: 26px;
+    }
+
+    .apply-modal-header,
+    .auth-modal-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .apply-modal-header h2,
+    .auth-modal-header h2 {
+      margin: 6px 0 12px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+    }
+
+    .apply-modal-eyebrow {
+      color: #059669;
+      font-size: 0.78rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .apply-modal-description,
+    .auth-modal-description {
+      color: #475467;
+      line-height: 1.7;
+    }
+
+    .apply-modal-highlights {
+      display: grid;
+      gap: 12px;
+      margin: 22px 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .apply-modal-highlights li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: #344054;
+      line-height: 1.6;
+    }
+
+    .apply-modal-highlights li::before {
+      content: "✓";
+      display: inline-flex;
+      flex-shrink: 0;
+      align-items: center;
+      justify-content: center;
+      width: 23px;
+      height: 23px;
+      border-radius: 50%;
+      background: #d1fae5;
+      color: #047857;
+      font-weight: 800;
+    }
+
+    .qualification-note,
+    .demo-auth-notice {
+      padding: 13px 15px;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      background: #f9fafb;
+      color: #667085;
+      font-size: 0.88rem;
+      line-height: 1.6;
+    }
+
+    .modal-primary-button,
+    .auth-submit-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 48px;
+      margin-top: 18px;
+      padding: 13px 18px;
+      border: 0;
+      border-radius: 12px;
+      background: #059669;
+      color: #ffffff;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .modal-primary-button:hover,
+    .auth-submit-button:hover {
+      background: #047857;
+    }
+
+    .auth-form {
+      display: grid;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .auth-form label {
+      display: grid;
+      gap: 7px;
+      color: #344054;
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .auth-form input {
+      width: 100%;
+      min-height: 46px;
+      padding: 12px 14px;
+      border: 1px solid #d0d5dd;
+      border-radius: 10px;
+      background: #ffffff;
+      color: #101828;
+      font: inherit;
+    }
+
+    .auth-form input:focus {
+      border-color: #10b981;
+      outline: 3px solid rgba(16, 185, 129, 0.15);
+    }
+
+    .auth-mode-switch {
+      margin-top: 18px;
+      color: #667085;
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    .auth-mode-switch button {
+      border: 0;
+      background: none;
+      color: #047857;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    #authMessage {
+      margin-top: 14px;
+      color: #047857;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .ecosystem-disclaimer {
+      max-width: 760px;
+      margin: 14px auto 0;
+      color: #98a2b3;
+      font-size: 0.78rem;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    @media (max-width: 600px) {
+      .lesson-player-modal,
+      .apply-modal,
+      .auth-modal {
+        align-items: flex-start;
+        padding: 10px;
+      }
+
+      .lesson-player-panel,
+      .apply-modal-panel,
+      .auth-modal-panel {
+        max-height: calc(100vh - 20px);
+        border-radius: 16px;
+      }
+
+      .lesson-player-header,
+      .lesson-player-information {
+        padding: 16px;
+      }
+
+      .youtube-external-actions {
+        align-items: stretch;
+        padding: 15px;
+      }
+
+      .youtube-external-button {
+        width: 100%;
+      }
+
+      .apply-modal-panel,
+      .auth-modal-panel {
+        padding: 20px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       APP SHELL
+  ========================== -->
+  <div class="app-shell">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+
+      <a href="#dashboard" class="brand" aria-label="AI Africa Learning Hub home">
+        <span class="brand-mark">AI</span>
+
+        <span class="brand-copy">
+          <strong>AI AFRICA</strong>
+          <small>LEARNING HUB</small>
+        </span>
+      </a>
+
+      <div class="sidebar-section-label">MENU</div>
+
+      <nav class="sidebar-nav" aria-label="Main navigation">
+
+        <button
+          type="button"
+          class="nav-item active"
+          data-view="dashboard"
+          aria-current="page"
+        >
+          <span class="nav-icon" aria-hidden="true">⌂</span>
+          <span>Dashboard</span>
+        </button>
+
+        <button type="button" class="nav-item" data-view="explore">
+          <span class="nav-icon" aria-hidden="true">⌕</span>
+          <span>Explore Lessons</span>
+        </button>
+
+        <button type="button" class="nav-item" data-view="my-learning">
+          <span class="nav-icon" aria-hidden="true">▤</span>
+          <span>My Learning</span>
+        </button>
+
+        <button type="button" class="nav-item" data-view="categories">
+          <span class="nav-icon" aria-hidden="true">▦</span>
+          <span>Learning Paths</span>
+        </button>
+
+      </nav>
+
+      <div class="sidebar-promo">
+        <div class="sidebar-promo-icon" aria-hidden="true">✦</div>
+
+        <h3>Build your future with AI</h3>
+
+        <p>
+          Learn practical digital skills and explore new ways to create
+          with artificial intelligence.
+        </p>
+
+        <button
+          type="button"
+          class="sidebar-promo-button"
+          data-view="explore"
+        >
+          Start learning
+        </button>
+      </div>
+
+      <div class="sidebar-bottom">
+        <div class="sidebar-bottom-label">YOUR LEARNING JOURNEY</div>
+
+        <p>Every lesson is another step forward.</p>
+      </div>
+
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+      <!-- TOP BAR -->
+      <header class="topbar">
+
+        <div class="topbar-left">
+          <button
+            type="button"
+            class="mobile-menu-button"
+            id="mobileMenuButton"
+            aria-label="Toggle navigation menu"
+            aria-controls="sidebar"
+            aria-expanded="false"
+          >
+            ☰
+          </button>
+
+          <div class="breadcrumb">
+            <span>AI Africa</span>
+            <span aria-hidden="true">/</span>
+            <strong id="breadcrumbCurrent">Dashboard</strong>
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <div class="topbar-welcome">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span>Keep learning. Keep building.</span>
+          </div>
+
+          <button
+            type="button"
+            class="topbar-auth-button"
+            id="openAuthButton"
+          >
+            Sign in
+          </button>
+        </div>
+
+      </header>
+
+      <!-- =========================
+           DASHBOARD VIEW
+      ========================== -->
+      <section
+        class="page-view active"
+        id="dashboard"
+        data-page="dashboard"
+        aria-labelledby="dashboardHeading"
+      >
+
+        <!-- HERO -->
+        <section class="dashboard-hero">
+
+          <div class="hero-content">
+
+            <div class="hero-eyebrow">
+              <span class="hero-eyebrow-dot"></span>
+              YOUR AI LEARNING JOURNEY STARTS HERE
+            </div>
+
+            <h1 id="dashboardHeading">
+              Learn AI.<br>
+              <span>Create the future.</span>
+            </h1>
+
+            <p>
+              Discover practical AI lessons, explore digital tools,
+              and develop skills to turn your ideas into reality.
+            </p>
+
+            <div class="hero-actions">
+              <button
+                type="button"
+                class="primary-button"
+                data-view="explore"
+              >
+                Explore lessons <span aria-hidden="true">→</span>
+              </button>
+
+              <button
+                type="button"
+                class="secondary-button"
+                data-view="my-learning"
+              >
+                My learning
+              </button>
+            </div>
+
+            <div class="hero-social-proof">
+              <span class="hero-social-icon" aria-hidden="true">✦</span>
+              <span>Learn at your own pace. Build something meaningful.</span>
+            </div>
+
+          </div>
+
+          <div class="hero-visual" aria-hidden="true">
+            <div class="hero-orbit orbit-one"></div>
+            <div class="hero-orbit orbit-two"></div>
+
+            <div class="hero-ai-card">
+              <span class="hero-ai-card-label">AI AFRICA</span>
+              <div class="hero-ai-symbol">AI</div>
+              <span class="hero-ai-card-caption">Learn · Create · Innovate</span>
+            </div>
+
+            <div class="floating-card floating-card-one">
+              <span>✦</span>
+              <div>
+                <strong>Artificial Intelligence</strong>
+                <small>Explore what's possible</small>
+              </div>
+            </div>
+
+            <div class="floating-card floating-card-two">
+              <span>⌘</span>
+              <div>
+                <strong>Digital Skills</strong>
+                <small>Build your capabilities</small>
+              </div>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- LEARNING STATS -->
+        <section class="stats-grid" aria-label="Your learning statistics">
+
+          <article class="stat-card">
+            <div class="stat-card-top">
+              <span class="stat-label">Lessons completed</span>
+              <span class="stat-icon stat-icon-green" aria-hidden="true">✓</span>
+            </div>
+
+            <div class="stat-value" id="completedCount">0</div>
+            <div class="stat-footnote">Keep moving forward</div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-card-top">
+              <span class="stat-label">Overall progress</span>
+              <span class="stat-icon stat-icon-purple" aria-hidden="true">↗</span>
+            </div>
+
+            <div class="stat-value">
+              <span id="progressPercent">0%</span>
+            </div>
+
+            <div class="stat-progress-track">
+              <div
+                class="stat-progress-bar"
+                id="overallProgressBar"
+                role="progressbar"
+                aria-label="Overall course progress"
+                aria-valuemin="0"
+                aria-valuemax="100"
+                aria-valuenow="0"
+              ></div>
+            </div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-card-top">
+              <span class="stat-label">Lessons opened</span>
+              <span class="stat-icon stat-icon-orange" aria-hidden="true">▶</span>
+            </div>
+
+            <div class="stat-value" id="openedCount">0</div>
+            <div class="stat-footnote">Your learning activity</div>
+          </article>
+
+        </section>
+
+        <!-- FEATURED OPPORTUNITIES CAROUSEL -->
+        <section class="content-section featured-section">
+
+          <div class="section-heading">
+            <div>
+              <span class="section-eyebrow">FEATURED OPPORTUNITIES</span>
+              <h2>Discover what's possible</h2>
+              <p>Explore creative programmes and opportunities to build with AI.</p>
+            </div>
+
+            <div class="carousel-controls">
+              <button
+                type="button"
+                class="carousel-arrow"
+                aria-label="Previous featured opportunity"
+                onclick="changeHero(-1)"
+              >
+                ←
+              </button>
+
+              <button
+                type="button"
+                class="carousel-arrow"
+                aria-label="Next featured opportunity"
+                onclick="changeHero(1)"
+              >
+                →
+              </button>
+            </div>
+          </div>
+
+          <div class="hero-carousel" id="heroCarousel">
+            <div class="hero-track" id="heroTrack">
+
+              <!-- FEATURE 1 -->
+              <article class="feature-slide feature-slide-creathon">
+
+                <div class="feature-slide-content">
+                  <span class="feature-tag">CREATIVE AI</span>
+
+                  <h3>Bring African stories to life</h3>
+
+                  <p>
+                    Explore AI-powered storytelling, film, music,
+                    and other creative possibilities.
+                  </p>
+
+                  <button
+                    type="button"
+                    class="feature-button"
+                    onclick="applyForEvent('creathon')"
+                  >
+                    Explore Create-thon <span aria-hidden="true">→</span>
+                  </button>
+                </div>
+
+                <div class="feature-slide-art" aria-hidden="true">
+                  <div class="feature-art-orbit"></div>
+                  <div class="feature-art-symbol">✦</div>
+                  <div class="feature-art-caption">CREATE</div>
+                </div>
+
+              </article>
+
+              <!-- FEATURE 2 -->
+              <article class="feature-slide feature-slide-hackathon">
+
+                <div class="feature-slide-content">
+                  <span class="feature-tag">BUILD WITH AI</span>
+
+                  <h3>Turn your ideas into solutions</h3>
+
+                  <p>
+                    Learn how AI tools can support product development,
+                    prototyping, and problem-solving.
+                  </p>
+
+                  <button
+                    type="button"
+                    class="feature-button"
+                    onclick="applyForEvent('hackathon')"
+                  >
+                    Explore AI innovation <span aria-hidden="true">→</span>
+                  </button>
+                </div>
+
+                <div class="feature-slide-art" aria-hidden="true">
+                  <div class="feature-art-orbit"></div>
+                  <div class="feature-art-symbol">&lt;/&gt;</div>
+                  <div class="feature-art-caption">BUILD</div>
+                </div>
+
+              </article>
+
+            </div>
+          </div>
+
+          <div class="carousel-indicators" aria-label="Featured opportunity slides">
+            <button
+              type="button"
+              class="carousel-indicator active"
+              aria-label="Show first featured opportunity"
+              aria-pressed="true"
+              onclick="goToHero(0)"
+            ></button>
+
+            <button
+              type="button"
+              class="carousel-indicator"
+              aria-label="Show second featured opportunity"
+              aria-pressed="false"
+              onclick="goToHero(1)"
+            ></button>
+          </div>
+
+        </section>
+
+        <!-- CONTINUE LEARNING -->
+        <section class="content-section">
+
+          <div class="section-heading">
+            <div>
+              <span class="section-eyebrow">PICK UP WHERE YOU LEFT OFF</span>
+              <h2>Continue learning</h2>
+              <p>Return to lessons you've already started.</p>
+            </div>
+
+            <button
+              type="button"
+              class="text-link-button"
+              data-view="my-learning"
+            >
+              View my learning <span aria-hidden="true">→</span>
+            </button>
+          </div>
+
+          <div class="lesson-grid" id="continueLearning">
+            <div class="empty-state">
+              <div class="empty-state-icon" aria-hidden="true">▤</div>
+              <h3>Your learning journey starts here</h3>
+              <p>Open a lesson to begin building your learning history.</p>
+
+              <button
+                type="button"
+                class="primary-button"
+                data-view="explore"
+              >
+                Explore lessons
+              </button>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- POPULAR LESSONS -->
+        <section class="content-section">
+
+          <div class="section-heading">
+            <div>
+              <span class="section-eyebrow">EXPLORE AND DISCOVER</span>
+              <h2>Popular lessons</h2>
+              <p>Find lessons that can help you develop new skills.</p>
+            </div>
+
+            <button
+              type="button"
+              class="text-link-button"
+              data-view="explore"
+            >
+              All lessons <span aria-hidden="true">→</span>
+            </button>
+          </div>
+
+          <div class="quick-filter-row" id="quickFilters">
+            <button type="button" class="quick-filter active" data-filter="all">
+              All topics
+            </button>
+
+            <button type="button" class="quick-filter" data-filter="ai">
+              Artificial Intelligence
+            </button>
+
+            <button type="button" class="quick-filter" data-filter="design">
+              Design
+            </button>
+
+            <button type="button" class="quick-filter" data-filter="coding">
+              Coding
+            </button>
+
+            <button type="button" class="quick-filter" data-filter="business">
+              Business
+            </button>
+          </div>
+
+          <div class="lesson-grid" id="popularLessons">
+            <div class="empty-state">
+              <div class="empty-state-icon" aria-hidden="true">✦</div>
+              <h3>Lessons will appear here</h3>
+              <p>Explore the lesson library to find your next learning opportunity.</p>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ADVERTISEMENT PLACEHOLDER -->
+        <section class="ad-container" aria-label="Advertisement">
+          <div class="ad-placeholder">
+            <span class="ad-label">ADVERTISEMENT</span>
+            <p>Space for relevant educational tools and learning resources.</p>
+          </div>
+        </section>
+
+      </section>
+
+      <!-- =========================
+           EXPLORE VIEW
+      ========================== -->
+      <section
+        class="page-view"
+        id="explore"
+        data-page="explore"
+        aria-labelledby="exploreHeading"
+        hidden
+      >
+
+        <section class="page-intro">
+          <span class="section-eyebrow">YOUR NEXT SKILL STARTS HERE</span>
+
+          <h1 id="exploreHeading">Explore lessons</h1>
+
+          <p>
+            Discover tutorials and learning resources across AI,
+            software development, digital creativity, and business.
+          </p>
+        </section>
+
+        <section class="explore-toolbar" aria-label="Search and filter lessons">
+
+          <div class="search-box">
+            <span aria-hidden="true">⌕</span>
+
+            <input
+              type="search"
+              id="lessonSearch"
+              placeholder="Search lessons, skills or topics..."
+              aria-label="Search lessons"
+              autocomplete="off"
+            >
+          </div>
+
+          <div class="filter-control">
+            <label for="levelFilter">Learning level</label>
+
+            <select id="levelFilter">
+              <option value="all">All levels</option>
+              <option value="beginner">Beginner</option>
+              <option value="intermediate">Intermediate</option>
+              <option value="advanced">Advanced</option>
+            </select>
+          </div>
+
+        </section>
+
+        <div class="explore-filter-row" id="exploreFilters">
+          <button type="button" class="explore-filter active" data-filter="all">
+            All lessons
+          </button>
+
+          <button type="button" class="explore-filter" data-filter="ai">
+            AI & Machine Learning
+          </button>
+
+          <button type="button" class="explore-filter" data-filter="coding">
+            Software Development
+          </button>
+
+          <button type="button" class="explore-filter" data-filter="design">
+            Design & Creativity
+          </button>
+
+          <button type="button" class="explore-filter" data-filter="business">
+            Business & Productivity
+          </button>
+        </div>
+
+        <div class="results-heading">
+          <h2>Available lessons</h2>
+          <span id="resultCount" aria-live="polite">Loading lessons...</span>
+        </div>
+
+        <div class="lesson-grid" id="allLessons">
+          <div class="empty-state">
+            <div class="empty-state-icon" aria-hidden="true">⌕</div>
+            <h3>Preparing your lesson library</h3>
+            <p>Your available lessons will appear here.</p>
+          </div>
+        </div>
+
+        <section class="ad-container" aria-label="Advertisement">
+          <div class="ad-placeholder">
+            <span class="ad-label">ADVERTISEMENT</span>
+            <p>Discover useful tools for your learning journey.</p>
+          </div>
+        </section>
+
+      </section>
+
+      <!-- =========================
+           MY LEARNING VIEW
+      ========================== -->
+      <section
+        class="page-view"
+        id="my-learning"
+        data-page="my-learning"
+        aria-labelledby="myLearningHeading"
+        hidden
+      >
+
+        <section class="page-intro">
+          <span class="section-eyebrow">YOUR PERSONAL LEARNING SPACE</span>
+
+          <h1 id="myLearningHeading">My learning</h1>
+
+          <p>
+            Track your progress and return to lessons you've opened
+            or completed on this device.
+          </p>
+        </section>
+
+        <section class="stats-grid" aria-label="Your learning summary">
+
+          <article class="stat-card">
+            <div class="stat-card-top">
+              <span class="stat-label">Completed</span>
+              <span class="stat-icon stat-icon-green" aria-hidden="true">✓</span>
+            </div>
+
+            <div class="stat-value" id="myCompleted">0</div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-card-top">
+              <span class="stat-label">Lessons opened</span>
+              <span class="stat-icon stat-icon-orange" aria-hidden="true">▶</span>
+            </div>
+
+            <div class="stat-value" id="myOpened">0</div>
+          </article>
+
+          <article class="stat-card">
+            <div class="stat-card-top">
+              <span class="stat-label">Overall progress</span>
+              <span class="stat-icon stat-icon-purple" aria-hidden="true">↗</span>
+            </div>
+
+            <div class="stat-value" id="myPercent">0%</div>
+          </article>
+
+        </section>
+
+        <section class="content-section">
+
+          <div class="section-heading">
+            <div>
+              <h2>Your lesson activity</h2>
+              <p>Your learning activity is stored locally by this demo.</p>
+            </div>
+
+            <button
+              type="button"
+              class="secondary-button"
+              id="clearActivity"
+            >
+              Clear activity
+            </button>
+          </div>
+
+          <div class="activity-list" id="activityList">
+            <div class="empty-state">
+              <div class="empty-state-icon" aria-hidden="true">▤</div>
+              <h3>No learning activity yet</h3>
+              <p>Open a lesson to start tracking your learning progress.</p>
+
+              <button
+                type="button"
+                class="primary-button"
+                data-view="explore"
+              >
+                Browse lessons
+              </button>
+            </div>
+          </div>
+
+        </section>
+
+        <section class="ad-container" aria-label="Advertisement">
+          <div class="ad-placeholder">
+            <span class="ad-label">ADVERTISEMENT</span>
+            <p>Educational resources and digital tools may appear here.</p>
+          </div>
+        </section>
+
+      </section>
+
+      <!-- =========================
+           LEARNING PATHS VIEW
+      ========================== -->
+      <section
+        class="page-view"
+        id="categories"
+        data-page="categories"
+        aria-labelledby="categoriesHeading"
+        hidden
+      >
+
+        <section class="page-intro">
+          <span class="section-eyebrow">CHOOSE YOUR DIRECTION</span>
+
+          <h1 id="categoriesHeading">Learning paths</h1>
+
+          <p>
+            Explore different areas of technology and choose a path
+            that matches your goals.
+          </p>
+        </section>
+
+        <section class="category-grid" id="categoryGrid">
+
+          <article class="category-card">
+            <div class="category-card-icon" aria-hidden="true">✦</div>
+            <span class="category-card-label">INTELLIGENCE</span>
+            <h2>Artificial Intelligence</h2>
+            <p>
+              Learn about AI tools, machine learning, generative AI,
+              and practical AI applications.
+            </p>
+
+            <button type="button" class="category-card-button" data-category="ai">
+              Explore this path <span aria-hidden="true">→</span>
+            </button>
+          </article>
+
+          <article class="category-card">
+            <div class="category-card-icon" aria-hidden="true">&lt;/&gt;</div>
+            <span class="category-card-label">DEVELOPMENT</span>
+            <h2>Software Development</h2>
+            <p>
+              Explore programming, websites, applications,
+              and software-building skills.
+            </p>
+
+            <button type="button" class="category-card-button" data-category="coding">
+              Explore this path <span aria-hidden="true">→</span>
+            </button>
+          </article>
+
+          <article class="category-card">
+            <div class="category-card-icon" aria-hidden="true">◇</div>
+            <span class="category-card-label">CREATIVITY</span>
+            <h2>Design & Creativity</h2>
+            <p>
+              Discover visual design, AI image creation,
+              video production, and digital storytelling.
+            </p>
+
+            <button type="button" class="category-card-button" data-category="design">
+              Explore this path <span aria-hidden="true">→</span>
+            </button>
+          </article>
+
+          <article class="category-card">
+            <div class="category-card-icon" aria-hidden="true">↗</div>
+            <span class="category-card-label">PRODUCTIVITY</span>
+            <h2>Business & Productivity</h2>
+            <p>
+              Explore digital business, automation, productivity,
+              and practical ways to use AI at work.
+            </p>
+
+            <button type="button" class="category-card-button" data-category="business">
+              Explore this path <span aria-hidden="true">→</span>
+            </button>
+          </article>
+
+          <article class="category-card">
+            <div class="category-card-icon" aria-hidden="true">⌘</div>
+            <span class="category-card-label">DIGITAL SKILLS</span>
+            <h2>Technology Fundamentals</h2>
+            <p>
+              Develop foundational technology skills and
+              understand the digital tools shaping the world.
+            </p>
+
+            <button type="button" class="category-card-button" data-category="technology">
+              Explore this path <span aria-hidden="true">→</span>
+            </button>
+          </article>
+
+          <article class="category-card">
+            <div class="category-card-icon" aria-hidden="true">◎</div>
+            <span class="category-card-label">INNOVATION</span>
+            <h2>AI Projects & Innovation</h2>
+            <p>
+              Discover how to use AI to develop ideas,
+              build prototypes, and solve practical problems.
+            </p>
+
+            <button type="button" class="category-card-button" data-category="innovation">
+              Explore this path <span aria-hidden="true">→</span>
+            </button>
+          </article>
+
+        </section>
+
+      </section>
+
+      <!-- =========================
+           TECHNOLOGY ECOSYSTEM
+      ========================== -->
+      <section class="ecosystem-section">
+
+        <div class="ecosystem-heading">
+          <span class="section-eyebrow">EXPLORE THE DIGITAL WORLD</span>
+          <h2>Technology platforms in our ecosystem</h2>
+          <p>
+            Discover tools and platforms that people use to learn,
+            develop, and create with technology.
+          </p>
+        </div>
+
+        <div class="ecosystem-logos">
+
+          <div class="ecosystem-logo">
+            <span class="ecosystem-logo-symbol" aria-hidden="true">M</span>
+            <span>Microsoft</span>
+          </div>
+
+          <div class="ecosystem-logo">
+            <span class="ecosystem-logo-symbol" aria-hidden="true">G</span>
+            <span>Google</span>
+          </div>
+
+          <div class="ecosystem-logo">
+            <span class="ecosystem-logo-symbol" aria-hidden="true">a</span>
+            <span>Amazon</span>
+          </div>
+
+          <div class="ecosystem-logo">
+            <span class="ecosystem-logo-symbol" aria-hidden="true">O</span>
+            <span>Oracle</span>
+          </div>
+
+        </div>
+
+        <p class="ecosystem-disclaimer">
+          Company names and logos are used for identification purposes only.
+          Their appearance does not imply sponsorship, partnership, or endorsement
+          of AI Africa Learning Hub.
+        </p>
+
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="site-footer">
+
+        <div class="footer-brand">
+          <span class="brand-mark">AI</span>
+
+          <div>
+            <strong>AI Africa Learning Hub</strong>
+            <p>Learn. Create. Innovate.</p>
+          </div>
+        </div>
+
+        <p class="footer-copyright">
+          © <span id="year"></span> AI Africa Learning Hub.
+          All rights reserved.
+        </p>
+
+        <p class="footer-note">
+          Built to support learning, creativity, and digital innovation.
+        </p>
+
+      </footer>
+
+    </main>
+
+  </div>
+
+  <!-- =========================
+       EVENT / PROGRAMME MODAL
+  ========================== -->
+  <div
+    class="apply-modal"
+    id="applyModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="applyModalTitle"
+    aria-describedby="applyModalDescription"
+    hidden
+  >
+
+    <div class="apply-modal-panel">
+
+      <div class="apply-modal-header">
+
+        <div>
+          <span class="apply-modal-eyebrow" id="eventEyebrow">
+            FEATURED OPPORTUNITY
+          </span>
+
+          <h2 id="applyModalTitle">Explore this opportunity</h2>
+        </div>
+
+        <button
+          type="button"
+          class="modal-close-button"
+          id="closeApplyModalButton"
+          aria-label="Close opportunity information"
+        >
+          ×
+        </button>
+
+      </div>
+
+      <p class="apply-modal-description" id="applyModalDescription">
+        Discover the programme and learn how to prepare for future opportunities.
+      </p>
+
+      <ul class="apply-modal-highlights" id="applyModalHighlights"></ul>
+
+      <p class="qualification-note" id="eventQualificationNote">
+        Check the programme organiser's official information for eligibility,
+        application dates, and current requirements.
+      </p>
+
+      <button
+        type="button"
+        class="modal-primary-button"
+        id="startLearningButton"
+      >
+        Explore related lessons →
+      </button>
+
+    </div>
+
+  </div>
+
+  <!-- =========================
+       AUTHENTICATION MODAL
+       DEMO ONLY — NO REAL ACCOUNT
+  ========================== -->
+  <div
+    class="auth-modal"
+    id="authModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="authModalTitle"
+    hidden
+  >
+
+    <div class="auth-modal-panel">
+
+      <div class="auth-modal-header">
+
+        <div>
+          <span class="section-eyebrow">AI AFRICA LEARNING HUB</span>
+          <h2 id="authModalTitle">Welcome back</h2>
+        </div>
+
+        <button
+          type="button"
+          class="modal-close-button"
+          id="closeAuthModalButton"
+          aria-label="Close sign-in window"
+        >
+          ×
+        </button>
+
+      </div>
+
+      <p class="auth-modal-description" id="authModalDescription">
+        Sign in to explore your learning experience.
+      </p>
+
+      <div class="demo-auth-notice">
+        This is a demonstration interface. The form does not create
+        a real account or securely authenticate users.
+      </div>
+
+      <form class="auth-form" id="demoSignInForm">
+
+        <label for="signInEmail">
+          Email address
+
+          <input
+            type="email"
+            id="signInEmail"
+            name="email"
+            placeholder="you@example.com"
+            autocomplete="email"
+            required
+          >
+        </label>
+
+        <label for="signInPassword">
+          Password
+
+          <input
+            type="password"
+            id="signInPassword"
+            name="password"
+            placeholder="Enter a demo password"
+            autocomplete="current-password"
+            required
+          >
+        </label>
+
+        <button type="submit" class="auth-submit-button">
+          Sign in (demo)
+        </button>
+
+      </form>
+
+      <form class="auth-form" id="demoSignUpForm" hidden>
+
+        <label for="signUpName">
+          Your name
+
+          <input
+            type="text"
+            id="signUpName"
+            name="name"
+            placeholder="Enter your name"
+            autocomplete="name"
+            required
+          >
+        </label>
+
+        <label for="signUpEmail">
+          Email address
+
+          <input
+            type="email"
+            id="signUpEmail"
+            name="email"
+            placeholder="you@example.com"
+            autocomplete="email"
+            required
+          >
+        </label>
+
+        <label for="signUpPassword">
+          Create a password
+
+          <input
+            type="password"
+            id="signUpPassword"
+            name="password"
+            placeholder="Enter a demo password"
+            autocomplete="new-password"
+            minlength="6"
+            required
+          >
+        </label>
+
+        <button type="submit" class="auth-submit-button">
+          Create demo account
+        </button>
+
+      </form>
+
+      <div class="auth-mode-switch">
+        <span id="authSwitchText">New to AI Africa?</span>
+
+        <button
+          type="button"
+          id="authSwitchButton"
+        >
+          Create an account
+        </button>
+      </div>
+
+      <p id="authMessage" role="status" aria-live="polite"></p>
+
+    </div>
+
+  </div>
+
+  <!-- =========================
+       LESSON PLAYER MODAL
+  ========================== -->
+  <div
+    id="lessonPlayerModal"
+    class="lesson-player-modal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="lessonPlayerTitle"
+    hidden
+  >
+
+    <div class="lesson-player-panel">
+
+      <div class="lesson-player-header">
+
+        <h2 id="lessonPlayerTitle">Tutorial</h2>
+
+        <button
+          type="button"
+          class="lesson-player-close"
+          id="closeLessonPlayer"
+          aria-label="Close lesson player"
+        >
+          ×
+        </button>
+
+      </div>
+
+      <!--
+        The player script can safely clear and rebuild this container.
+        Keep the external YouTube action elements OUTSIDE this container.
+      -->
+      <div id="youtubePlayerContainer">
+        <div id="youtubePlayer"></div>
+      </div>
+
+      <!--
+        Fallback link:
+        lesson-player.js displays this when a valid YouTube video is available.
+      -->
+      <div
+        class="youtube-external-actions"
+        id="youtubeExternalActions"
+        hidden
+      >
+
+        <div class="youtube-external-copy">
+          Having trouble playing this video here?
+          Open the lesson directly on YouTube.
+        </div>
+
+        <a
+          id="openOnYouTube"
+          class="youtube-external-button"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open this lesson on YouTube in a new tab"
+          hidden
+        >
+          <span aria-hidden="true">▶</span>
+          Watch on YouTube
+          <span aria-hidden="true">↗</span>
+        </a>
+
+      </div>
+
+      <div class="lesson-player-information">
+
+        <p id="lessonPlayerDescription">
+          Open a lesson to view its tutorial and track your progress.
+        </p>
+
+        <div class="lesson-watch-status">
+          <span id="lessonWatchStatus">Ready to learn</span>
+          <span id="lessonWatchPercent">0%</span>
+        </div>
+
+        <div
+          class="lesson-watch-track"
+          role="progressbar"
+          aria-label="Lesson watch progress"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+          id="lessonWatchProgress"
+        >
+          <div id="lessonWatchBar"></div>
+        </div>
+
+        <p class="lesson-watch-note">
+          Your watch progress may be stored in this browser.
+          Watching a video does not automatically provide a certificate
+          or verify completion outside this learning hub.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- =========================
+       JAVASCRIPT FILES
+       Keep these scripts in order.
+  ========================== -->
+
+  <script src="auth.js"></script>
+  <script src="courses.js"></script>
+  <script src="learning-core.js"></script>
+  <script src="lesson-player.js"></script>
+  <script src="script.js"></script>
+
+  <!-- =========================
+       EVENT MODAL INTEGRATION
+  ========================== -->
+  <script>
+    (() => {
+      "use strict";
+
+      const applyModal = document.getElementById("applyModal");
+      const closeApplyModalButton = document.getElementById(
+        "closeApplyModalButton"
+      );
+      const applyModalTitle = document.getElementById("applyModalTitle");
+      const applyModalDescription = document.getElementById(
+        "applyModalDescription"
+      );
+      const eventEyebrow = document.getElementById("eventEyebrow");
+      const applyModalHighlights = document.getElementById(
+        "applyModalHighlights"
+      );
+      const eventQualificationNote = document.getElementById(
+        "eventQualificationNote"
+      );
+      const startLearningButton = document.getElementById(
+        "startLearningButton"
+      );
+
+      if (
+        !applyModal ||
+        !closeApplyModalButton ||
+        !applyModalTitle ||
+        !applyModalDescription ||
+        !applyModalHighlights ||
+        !startLearningButton
+      ) {
+        return;
+      }
+
+      const programmeContent = {
+        creathon: {
+          eyebrow: "CREATIVE AI OPPORTUNITY",
+          title: "Explore AI-powered creativity",
+          description:
+            "Discover how artificial intelligence can support African storytelling, filmmaking, music, design, and digital content creation.",
+          highlights: [
+            "Explore AI-powered storytelling and content creation.",
+            "Learn how digital tools can support creative projects.",
+            "Develop ideas that reflect African experiences and perspectives.",
+            "Check official programme pages for current application details."
+          ],
+          qualification:
+            "This is an educational introduction, not an official application portal. Check the programme organiser's official website for eligibility, deadlines, fees, and participation requirements.",
+          button: "Explore creative lessons"
+        },
+
+        hackathon: {
+          eyebrow: "AI INNOVATION OPPORTUNITY",
+          title: "Build solutions with AI",
+          description:
+            "Learn how AI tools can help you explore ideas, create prototypes, and develop digital solutions to practical challenges.",
+          highlights: [
+            "Explore AI-assisted product development.",
+            "Learn about prototyping and testing digital ideas.",
+            "Identify practical problems that technology could help address.",
+            "Review official competition rules before applying to an event."
+          ],
+          qualification:
+            "This is an educational introduction, not a live application or a guarantee of selection. Confirm current dates, eligibility, and requirements with the official organiser.",
+          button: "Explore AI lessons"
+        }
+      };
+
+      let previousFocus = null;
+
+      function renderHighlights(items) {
+        applyModalHighlights.replaceChildren();
+
+        items.forEach((item) => {
+          const li = document.createElement("li");
+          li.textContent = item;
+          applyModalHighlights.appendChild(li);
+        });
+      }
+
+      function openApplyModal(programme) {
+        const content = programmeContent[programme];
+
+        if (!content) {
+          return;
+        }
+
+        previousFocus = document.activeElement;
+
+        eventEyebrow.textContent = content.eyebrow;
+        applyModalTitle.textContent = content.title;
+        applyModalDescription.textContent = content.description;
+        eventQualificationNote.textContent = content.qualification;
+
+        renderHighlights(content.highlights);
+
+        startLearningButton.textContent = content.button + " →";
+
+        applyModal.hidden = false;
+        document.body.classList.add("modal-open");
+
+        closeApplyModalButton.focus();
+      }
+
+      function closeApplyModal() {
+        applyModal.hidden = true;
+
+        if (!document.querySelector(
+          "#lessonPlayerModal:not([hidden]), #authModal:not([hidden])"
+        )) {
+          document.body.classList.remove("modal-open");
+        }
+
+        if (previousFocus && typeof previousFocus.focus === "function") {
+          previousFocus.focus();
+        }
+      }
+
+      function navigateToLearning() {
+        closeApplyModal();
+
+        const exploreButton = document.querySelector(
+          '[data-view="explore"]'
+        );
+
+        if (exploreButton) {
+          exploreButton.click();
+        }
+      }
+
+      window.applyForEvent = openApplyModal;
+      window.closeApplyModal = closeApplyModal;
+
+      closeApplyModalButton.addEventListener("click", closeApplyModal);
+
+      startLearningButton.addEventListener("click", navigateToLearning);
+
+      applyModal.addEventListener("click", (event) => {
+        if (event.target === applyModal) {
+          closeApplyModal();
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && !applyModal.hidden) {
+          closeApplyModal();
+        }
+      });
+    })();
+  </script>
+
+  <!-- =========================
+       SHARED MODAL BODY STATE
+  ========================== -->
+  <script>
+    (() => {
+      "use strict";
+
+      const modalIds = [
+        "applyModal",
+        "authModal",
+        "lessonPlayerModal"
+      ];
+
+      function updateModalBodyState() {
+        const anyModalOpen = modalIds.some((id) => {
+          const element = document.getElementById(id);
+          return element && !element.hidden;
+        });
+
+        document.body.classList.toggle("modal-open", anyModalOpen);
+      }
+
+      modalIds.forEach((id) => {
+        const modal = document.getElementById(id);
+
+        if (!modal) {
+          return;
+        }
+
+        const observer = new MutationObserver(updateModalBodyState);
+
+        observer.observe(modal, {
+          attributes: true,
+          attributeFilter: ["hidden"]
+        });
+      });
+
+      updateModalBodyState();
+
+      const yearElement = document.getElementById("year");
+
+      if (yearElement) {
+        yearElement.textContent = new Date().getFullYear();
+      }
+    })();
+  </script>
+
+</body>
+</html>
