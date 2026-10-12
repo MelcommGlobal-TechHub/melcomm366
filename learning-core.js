@@ -829,3 +829,390 @@
     };
 
 })();
+
+/* =========================================
+AI AFRICA ACHIEVEMENT BADGES
+Reads the existing learning percentage.
+========================================= */
+
+(function () {
+"use strict";
+
+let progressObserver = null;
+let observedProgressElement = null;
+
+function getProgress() {
+    const element = document.getElementById("myPercent");
+
+    if (!element) {
+        return 0;
+    }
+
+    const match = element.textContent.match(/\d+(?:\.\d+)?/);
+    const progress = match ? Number(match[0]) : 0;
+
+    return Math.min(100, Math.max(0, progress));
+}
+
+function updateAchievements() {
+    const progress = getProgress();
+
+    const badges = [
+        {
+            card: "starterBadge",
+            status: "starterStatus",
+            threshold: 25,
+            unlockedText: "Unlocked",
+            lockedText: "Not unlocked"
+        },
+        {
+            card: "builderBadge",
+            status: "builderStatus",
+            threshold: 50,
+            unlockedText: "Unlocked",
+            lockedText: "Not unlocked"
+        },
+        {
+            card: "certifiedBadge",
+            status: "certifiedStatus",
+            threshold: 100,
+            unlockedText: "100% Completed",
+            lockedText: "Not unlocked"
+        },
+        {
+            card: "hackathonBadge",
+            status: "hackathonStatus",
+            threshold: 100,
+            unlockedText: "Learning requirement met",
+            lockedText: "Complete your learning first"
+        }
+    ];
+
+    badges.forEach(function (badge) {
+        const card = document.getElementById(badge.card);
+        const status = document.getElementById(badge.status);
+        const unlocked = progress >= badge.threshold;
+
+        if (card) {
+            card.classList.toggle("unlocked", unlocked);
+        }
+
+        if (status) {
+            status.textContent = unlocked
+                ? badge.unlockedText
+                : badge.lockedText;
+        }
+    });
+
+    const successPanel =
+        document.getElementById("achievementSuccess");
+
+    if (successPanel) {
+        successPanel.hidden = progress < 100;
+    }
+}
+
+function watchProgress() {
+    const element = document.getElementById("myPercent");
+
+    if (!element) {
+        updateAchievements();
+        return;
+    }
+
+    if (element === observedProgressElement) {
+        updateAchievements();
+        return;
+    }
+
+    if (progressObserver) {
+        progressObserver.disconnect();
+    }
+
+    observedProgressElement = element;
+
+    progressObserver = new MutationObserver(function () {
+        updateAchievements();
+    });
+
+    progressObserver.observe(element, {
+        childList: true,
+        characterData: true,
+        subtree: true
+    });
+
+    updateAchievements();
+}
+
+function escapeHTML(value) {
+    return String(value).replace(/[&<>"']/g, function (character) {
+        const replacements = {
+            "&": "&amp;",
+            "<": "&lt;",
+            ">": "&gt;",
+            '"': "&quot;",
+            "'": "&#39;"
+        };
+
+        return replacements[character];
+    });
+}
+
+function getLearnerName() {
+    const nameElements = [
+        document.getElementById("sidebarUserName"),
+        document.getElementById("dropdownUserName")
+    ];
+
+    for (const element of nameElements) {
+        if (!element) {
+            continue;
+        }
+
+        const name = element.textContent.trim();
+
+        if (
+            name &&
+            !/^(user|ai africa learner)$/i.test(name)
+        ) {
+            return name;
+        }
+    }
+
+    return "AI Africa Learner";
+}
+
+function downloadCertificate() {
+    if (getProgress() < 100) {
+        window.alert(
+            "Complete 100% of the required learning activities " +
+            "before downloading your achievement certificate."
+        );
+        return;
+    }
+
+    const learnerName = escapeHTML(getLearnerName());
+
+    const completionDate = escapeHTML(
+        new Date().toLocaleDateString(undefined, {
+            year: "numeric",
+            month: "long",
+            day: "numeric"
+        })
+    );
+
+    const certificateHTML = `
+
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Africa Learning Achievement</title><style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 30px;
+    background: #080d1c;
+    color: #edf7ff;
+    font-family: Arial, sans-serif;
+}
+
+.certificate {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 55px 35px;
+    text-align: center;
+    background:
+        radial-gradient(
+            circle at top,
+            rgba(16,185,129,.14),
+            transparent 50%
+        ),
+        #101a2b;
+    border: 4px double #f5cb68;
+    outline: 1px solid rgba(245,203,104,.35);
+    outline-offset: -14px;
+}
+
+.brand {
+    color: #62e5ed;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 4px;
+}
+
+.medal {
+    margin: 25px 0;
+    font-size: 65px;
+}
+
+h1 {
+    color: #f5cb68;
+    font-size: clamp(28px, 5vw, 44px);
+    line-height: 1.2;
+}
+
+.subtitle {
+    color: #c2cede;
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+.learner {
+    margin: 28px 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #f5cb68;
+    color: #fff;
+    font-size: clamp(24px, 4vw, 36px);
+    overflow-wrap: anywhere;
+}
+
+.achievement {
+    margin: 20px 0;
+    color: #f5cb68;
+    font-size: 21px;
+    font-weight: 800;
+}
+
+.details {
+    color: #a8b8ce;
+    font-size: 13px;
+    line-height: 1.9;
+}
+
+.notice {
+    margin-top: 28px;
+    padding: 14px;
+    background: rgba(8,13,28,.6);
+    color: #a8b8ce;
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+.print-button {
+    display: block;
+    margin: 25px auto 0;
+    padding: 13px 22px;
+    border: 0;
+    border-radius: 9px;
+    background: #10b981;
+    color: #071711;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+@media print {
+    @page {
+        size: landscape;
+        margin: 10mm;
+    }
+
+    body {
+        padding: 0;
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+    }
+
+    .certificate {
+        margin: 0 auto;
+        break-inside: avoid;
+    }
+
+    .print-button {
+        display: none;
+    }
+}
+</style></head><body>
+<main class="certificate"><div class="brand">✦ AI AFRICA LEARNING HUB</div>
+
+<div class="medal">🏅</div>
+
+<h1>Certificate of Learning Achievement</h1>
+
+<p class="subtitle">This certificate recognises that</p>
+
+<div class="learner">${learnerName}</div>
+
+<p class="subtitle">
+    has completed 100% of the learning activities
+    recorded by AI Africa Learning Hub.
+</p>
+
+<div class="achievement">
+    AI AFRICA CERTIFIED LEARNER
+</div>
+
+<p class="details">
+    Achievement date: ${completionDate}<br>
+    Learning progress recorded: 100%
+</p>
+
+<div class="notice">
+    This certificate recognises learning achievement within
+    AI Africa Learning Hub. It is not an accredited academic
+    qualification, a verified identity document, or a guarantee
+    of acceptance into an external Create-thon or hackathon.
+    External organisers determine their own eligibility and
+    selection requirements.
+</div>
+
+<button class="print-button" onclick="window.print()">
+    Print or Save as PDF
+</button>
+
+</main>
+</body>
+</html>`;    const certificateWindow = window.open("", "_blank");
+
+    if (!certificateWindow) {
+        window.alert(
+            "Your browser blocked the certificate window. " +
+            "Allow pop-ups for this site and try again."
+        );
+        return;
+    }
+
+    certificateWindow.document.open();
+    certificateWindow.document.write(certificateHTML);
+    certificateWindow.document.close();
+}
+
+function initializeAchievements() {
+    watchProgress();
+
+    const downloadButton =
+        document.getElementById("downloadAchievement");
+
+    if (
+        downloadButton &&
+        downloadButton.dataset.initialized !== "true"
+    ) {
+        downloadButton.dataset.initialized = "true";
+
+        downloadButton.addEventListener(
+            "click",
+            downloadCertificate
+        );
+    }
+
+    window.addEventListener("storage", updateAchievements);
+
+    document.addEventListener("click", function () {
+        window.setTimeout(watchProgress, 150);
+        window.setTimeout(updateAchievements, 500);
+    });
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener(
+        "DOMContentLoaded",
+        initializeAchievements
+    );
+} else {
+    initializeAchievements();
+}
+
+})();
