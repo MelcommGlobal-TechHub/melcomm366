@@ -1,1136 +1,1176 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#080d1c"><meta name="description"
-      content="Learn artificial intelligence with AI Africa. Explore practical AI tutorials, build skills, earn learning badges, and prepare for creative AI programmes and hackathons.">
+    <meta name="theme-color" content="#080d1c">
 
-<meta name="keywords"
-      content="AI Africa, artificial intelligence, AI learning, AI tutorials, AI tools, AI hackathon, video Create-thon, learning badges">
+    <meta name="description"
+          content="Learn artificial intelligence with AI Africa. Explore practical AI tutorials, build skills, earn learning badges, and prepare for creative AI programmes and hackathons.">
 
-<meta name="author" content="AI Africa">
+    <meta name="keywords"
+          content="AI Africa, artificial intelligence, AI learning, AI tutorials, AI tools, AI hackathon, video Create-thon, learning badges">
 
-<title>AI Africa Learning Hub | Learn, Create and Innovate</title>
+    <meta name="author" content="AI Africa">
 
-<link rel="icon"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23080d1c'/%3E%3Ctext x='50' y='64' font-size='36' font-family='Arial' font-weight='bold' text-anchor='middle' fill='%2362e5ed'%3EAI%3C/text%3E%3C/svg%3E">
+    <title>AI Africa Learning Hub | Learn, Create and Innovate</title>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon"
+          href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23080d1c'/%3E%3Ctext x='50' y='64' font-size='36' font-family='Arial' font-weight='bold' text-anchor='middle' fill='%2362e5ed'%3EAI%3C/text%3E%3C/svg%3E">
 
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-      rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+          rel="stylesheet">
 
-</head><body><!-- =====================================================
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- =====================================================
      SIDEBAR
-===================================================== --><aside class="sidebar" id="sidebar"><a class="brand" href="#dashboard" data-view="dashboard">
-    <div class="brand-logo">AI<span>✦</span></div>
+===================================================== -->
 
-    <div class="brand-text">
-        <strong>AI AFRICA</strong>
-        <small>LEARNING HUB</small>
-    </div>
-</a>
+<aside class="sidebar" id="sidebar">
 
-<div class="sidebar-label">LEARNING SPACE</div>
+    <a class="brand" href="#dashboard" data-view="dashboard">
+        <div class="brand-logo">AI<span>✦</span></div>
 
-<nav class="navigation" aria-label="Main navigation">
+        <div class="brand-text">
+            <strong>AI AFRICA</strong>
+            <small>LEARNING HUB</small>
+        </div>
+    </a>
 
-    <button class="nav-link active"
-            type="button"
-            data-view="dashboard">
-        <span>▦</span> Dashboard
-    </button>
+    <div class="sidebar-label">LEARNING SPACE</div>
 
-    <button class="nav-link"
-            type="button"
-            data-view="explore">
-        <span>⌕</span> Explore Lessons
-    </button>
+    <nav class="navigation" aria-label="Main navigation">
 
-    <button class="nav-link"
-            type="button"
-            data-view="my-learning">
-        <span>▤</span> My Learning
-    </button>
+        <button class="nav-link active"
+                type="button"
+                data-view="dashboard">
+            <span>▦</span> Dashboard
+        </button>
 
-    <button class="nav-link"
-            type="button"
-            data-view="categories">
-        <span>◈</span> Learning Paths
-    </button>
+        <button class="nav-link"
+                type="button"
+                data-view="explore">
+            <span>⌕</span> Explore Lessons
+        </button>
 
-</nav>
+        <button class="nav-link"
+                type="button"
+                data-view="my-learning">
+            <span>▤</span> My Learning
+        </button>
 
-<div class="sidebar-promo">
-    <div class="promo-symbol">✦</div>
+        <button class="nav-link"
+                type="button"
+                data-view="categories">
+            <span>◈</span> Learning Paths
+        </button>
 
-    <small>YOUR NEXT LEVEL</small>
+    </nav>
 
-    <h3>Build skills.<br>Shape the future.</h3>
+    <div class="sidebar-promo">
+        <div class="promo-symbol">✦</div>
 
-    <p>
-        Learn artificial intelligence, complete lessons,
-        earn learning badges, and turn your ideas into possibilities.
-    </p>
+        <small>YOUR NEXT LEVEL</small>
 
-    <button type="button"
-            data-view="explore"
-            class="promo-button">
-        Explore lessons →
-    </button>
-</div>
+        <h3>Build skills.<br>Shape the future.</h3>
 
-<div class="sidebar-profile">
+        <p>
+            Learn artificial intelligence, complete lessons,
+            earn learning badges, and turn your ideas into possibilities.
+        </p>
 
-    <div class="profile-avatar" id="sidebarAvatar">A</div>
-
-    <div>
-        <strong id="sidebarUserName">AI Africa Learner</strong>
-        <small id="sidebarUserCaption">Your learning journey</small>
+        <button type="button"
+                data-view="explore"
+                class="promo-button">
+            Explore lessons →
+        </button>
     </div>
 
-    <span class="online-dot"></span>
+    <div class="sidebar-profile">
 
-</div>
+        <div class="profile-avatar" id="sidebarAvatar">A</div>
 
-</aside><!-- =====================================================
-     MAIN CONTENT
-===================================================== --><main class="main-content"><header class="topbar">
-
-    <button id="menuToggle"
-            class="menu-toggle"
-            type="button"
-            aria-label="Open navigation"
-            aria-expanded="false">
-        ☰
-    </button>
-
-    <div class="breadcrumb">
-        Learning Space
-        <span>/</span>
-        <strong id="pageTitle">Dashboard</strong>
-    </div>
-
-    <div class="topbar-right">
-
-        <div class="learning-status">
-            <span></span>
-            YOUR AI JOURNEY
+        <div>
+            <strong id="sidebarUserName">AI Africa Learner</strong>
+            <small id="sidebarUserCaption">Your learning journey</small>
         </div>
 
-        <div class="auth-navigation">
+        <span class="online-dot"></span>
 
-            <button class="profile-menu-button"
-                    id="profileMenuButton"
-                    type="button"
-                    aria-label="Open profile menu"
-                    aria-expanded="false"
-                    aria-controls="authDropdown">
+    </div>
 
-                <span class="profile-menu-icon">👤</span>
+</aside>
 
-            </button>
 
-            <div class="auth-dropdown"
-                 id="authDropdown"
-                 hidden>
+<!-- =====================================================
+     MAIN CONTENT
+===================================================== -->
 
-                <div id="signedOutControls">
+<main class="main-content">
 
-                    <button type="button"
-                            id="openSignIn"
-                            class="auth-menu-item">
-                        Sign In
-                    </button>
+    <!-- TOP NAVIGATION -->
 
-                    <button type="button"
-                            id="openSignUp"
-                            class="auth-menu-item">
-                        Create Account
-                    </button>
+    <header class="topbar">
 
-                </div>
+        <button id="menuToggle"
+                class="menu-toggle"
+                type="button"
+                aria-label="Open navigation"
+                aria-expanded="false">
+            ☰
+        </button>
 
-                <div id="signedInControls" hidden>
+        <div class="breadcrumb">
+            Learning Space
+            <span>/</span>
+            <strong id="pageTitle">Dashboard</strong>
+        </div>
 
-                    <div class="auth-user-summary">
+        <div class="topbar-right">
 
-                        <div class="auth-avatar"
-                             id="dropdownAvatar">
-                            U
-                        </div>
+            <div class="learning-status">
+                <span></span>
+                YOUR AI JOURNEY
+            </div>
 
-                        <div>
-                            <strong id="dropdownUserName">User</strong>
+            <!-- PROFILE MENU -->
 
-                            <span class="online-label">
-                                <i class="online-dot"></i>
-                                Signed in
-                            </span>
-                        </div>
+            <div class="auth-navigation">
+
+                <button class="profile-menu-button"
+                        id="profileMenuButton"
+                        type="button"
+                        aria-label="Open profile menu"
+                        aria-expanded="false"
+                        aria-controls="authDropdown">
+
+                    <span class="profile-menu-icon">👤</span>
+
+                </button>
+
+                <div class="auth-dropdown"
+                     id="authDropdown"
+                     hidden>
+
+                    <!-- SIGNED OUT -->
+
+                    <div id="signedOutControls">
+
+                        <button type="button"
+                                id="openSignIn"
+                                class="auth-menu-item">
+                            Sign In
+                        </button>
+
+                        <button type="button"
+                                id="openSignUp"
+                                class="auth-menu-item">
+                            Create Account
+                        </button>
 
                     </div>
 
-                    <button type="button"
-                            id="openLearningProgress"
-                            class="auth-menu-item">
-                        My Learning Progress
-                    </button>
+                    <!-- SIGNED IN -->
 
-                    <button type="button"
-                            id="signOutButton"
-                            class="auth-menu-item sign-out-item">
-                        Sign Out
-                    </button>
+                    <div id="signedInControls" hidden>
+
+                        <div class="auth-user-summary">
+
+                            <div class="auth-avatar"
+                                 id="dropdownAvatar">
+                                U
+                            </div>
+
+                            <div>
+                                <strong id="dropdownUserName">User</strong>
+
+                                <span class="online-label">
+                                    <i class="online-dot"></i>
+                                    Signed in
+                                </span>
+                            </div>
+
+                        </div>
+
+                        <button type="button"
+                                id="openLearningProgress"
+                                class="auth-menu-item">
+                            My Learning Progress
+                        </button>
+
+                        <button type="button"
+                                id="signOutButton"
+                                class="auth-menu-item sign-out-item">
+                            Sign Out
+                        </button>
+
+                    </div>
 
                 </div>
 
             </div>
 
+            <!-- SHOWN AFTER SIGN-IN -->
+
+            <button id="topProfileAvatar"
+                    class="top-profile-avatar"
+                    type="button"
+                    aria-label="Open profile"
+                    hidden>
+
+                <span id="topAvatarInitials">U</span>
+                <i class="online-dot"></i>
+
+            </button>
+
         </div>
 
-        <button id="topProfileAvatar"
-                class="top-profile-avatar"
-                type="button"
-                aria-label="Open profile"
-                hidden>
-
-            <span id="topAvatarInitials">U</span>
-            <i class="online-dot"></i>
-
-        </button>
-
-    </div>
-
-</header>
+    </header>
 
 
-<!-- =================================================
-     DASHBOARD
-================================================== -->
+    <!-- =================================================
+         DASHBOARD
+    ================================================== -->
 
-<section class="page active" id="dashboard">
+    <section class="page active" id="dashboard">
 
-    <div class="hero">
+        <div class="hero">
 
-        <div class="hero-content">
+            <div class="hero-content">
 
-            <div class="eyebrow">
+                <div class="eyebrow">
+                    <span>✦</span>
+                    THE FUTURE IS YOURS TO CREATE
+                </div>
+
+                <h1>
+                    Learn AI.<br>
+                    <span>Build what's next.</span>
+                </h1>
+
+                <p>
+                    Welcome to AI Africa Learning Hub.
+                    Explore practical AI tutorials, discover powerful
+                    tools, develop useful skills, and prepare to turn
+                    your ideas into real-world projects.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <button type="button"
+                            class="primary-button"
+                            data-view="explore">
+                        Explore Lessons <span>↗</span>
+                    </button>
+
+                    <button type="button"
+                            class="secondary-button"
+                            data-view="my-learning">
+                        My Progress
+                    </button>
+
+                </div>
+
+                <div class="hero-note">
+                    <span>✓</span>
+                    Free learning resources · Learn at your own pace
+                </div>
+
+            </div>
+
+            <div class="hero-art" aria-hidden="true">
+
+                <div class="orbit orbit-1"></div>
+                <div class="orbit orbit-2"></div>
+                <div class="orbit orbit-3"></div>
+
+                <div class="ai-core">
+                    <span>AI</span>
+                    <i>✦</i>
+                </div>
+
+                <div class="floating-node node-1">✧</div>
+                <div class="floating-node node-2">⌘</div>
+                <div class="floating-node node-3">◉</div>
+
+                <div class="art-label label-1">CREATE</div>
+                <div class="art-label label-2">INNOVATE</div>
+
+            </div>
+
+        </div>
+
+
+        <!-- DASHBOARD STATISTICS -->
+
+        <div class="stats-grid">
+
+            <div class="stat-card">
+
+                <div class="stat-heading">
+                    Lessons Completed
+                    <span class="stat-icon blue">✓</span>
+                </div>
+
+                <div class="stat-number" id="completedCount">0</div>
+
+                <p>
+                    Lessons completed through recorded video watching.
+                </p>
+
+            </div>
+
+            <div class="stat-card">
+
+                <div class="stat-heading">
+                    Overall Progress
+                    <span class="stat-icon purple">↗</span>
+                </div>
+
+                <div class="stat-number">
+                    <span id="progressPercent">0</span><small>%</small>
+                </div>
+
+                <div class="progress-track">
+                    <div id="overallProgressBar"></div>
+                </div>
+
+            </div>
+
+            <div class="stat-card">
+
+                <div class="stat-heading">
+                    Lessons Explored
+                    <span class="stat-icon gold">▶</span>
+                </div>
+
+                <div class="stat-number" id="openedCount">0</div>
+
+                <p>Tutorials opened from this platform.</p>
+
+            </div>
+
+        </div>
+
+
+        <!-- CONTINUE LEARNING -->
+
+        <div class="section-heading">
+
+            <div>
+                <div class="eyebrow">PICK UP WHERE YOU LEFT OFF</div>
+                <h2>Continue Learning</h2>
+            </div>
+
+            <button type="button"
+                    class="text-link"
+                    data-view="my-learning">
+                My Learning →
+            </button>
+
+        </div>
+
+        <div id="continueLearning"
+             class="continue-card"></div>
+
+
+        <!-- POPULAR LESSONS -->
+
+        <div class="section-heading section-spaced">
+
+            <div>
+                <div class="eyebrow">CURATED FOR CURIOUS MINDS</div>
+
+                <h2>Popular AI Lessons</h2>
+
+                <p class="section-description">
+                    Discover tutorials selected to help you get started.
+                </p>
+            </div>
+
+            <button type="button"
+                    class="text-link"
+                    data-view="explore">
+                View All →
+            </button>
+
+        </div>
+
+        <div class="filter-row" id="quickFilters">
+
+            <button type="button"
+                    class="filter-chip active"
+                    data-category="All">
+                All Lessons
+            </button>
+
+            <button type="button"
+                    class="filter-chip"
+                    data-category="AI Basics">
+                AI Basics
+            </button>
+
+            <button type="button"
+                    class="filter-chip"
+                    data-category="Generative AI">
+                Generative AI
+            </button>
+
+            <button type="button"
+                    class="filter-chip"
+                    data-category="AI Tools">
+                AI Tools
+            </button>
+
+            <button type="button"
+                    class="filter-chip"
+                    data-category="Prompt Engineering">
+                Prompt Engineering
+            </button>
+
+        </div>
+
+        <div class="lesson-grid" id="popularLessons"></div>
+
+
+        <!-- ADVERTISEMENT PLACEHOLDER -->
+
+        <div class="ad-container">
+
+            <div class="ad-label">ADVERTISEMENT</div>
+
+            <div class="ad-placeholder">
+
                 <span>✦</span>
-                THE FUTURE IS YOURS TO CREATE
-            </div>
 
-            <h1>
-                Learn AI.<br>
-                <span>Build what's next.</span>
-            </h1>
+                <div>
+                    <strong>Advertisement Space</strong>
 
-            <p>
-                Welcome to AI Africa Learning Hub.
-                Explore practical AI tutorials, discover powerful
-                tools, develop useful skills, and prepare to turn
-                your ideas into real-world projects.
-            </p>
-
-            <div class="hero-buttons">
-
-                <button type="button"
-                        class="primary-button"
-                        data-view="explore">
-                    Explore Lessons <span>↗</span>
-                </button>
-
-                <button type="button"
-                        class="secondary-button"
-                        data-view="my-learning">
-                    My Progress
-                </button>
-
-            </div>
-
-            <div class="hero-note">
-                <span>✓</span>
-                Free learning resources · Learn at your own pace
-            </div>
-
-        </div>
-
-        <div class="hero-art" aria-hidden="true">
-
-            <div class="orbit orbit-1"></div>
-            <div class="orbit orbit-2"></div>
-            <div class="orbit orbit-3"></div>
-
-            <div class="ai-core">
-                <span>AI</span>
-                <i>✦</i>
-            </div>
-
-            <div class="floating-node node-1">✧</div>
-            <div class="floating-node node-2">⌘</div>
-            <div class="floating-node node-3">◉</div>
-
-            <div class="art-label label-1">CREATE</div>
-            <div class="art-label label-2">INNOVATE</div>
-
-        </div>
-
-    </div>
-
-
-    <!-- DASHBOARD STATISTICS -->
-
-    <div class="stats-grid">
-
-        <div class="stat-card">
-
-            <div class="stat-heading">
-                Lessons Completed
-                <span class="stat-icon blue">✓</span>
-            </div>
-
-            <div class="stat-number" id="completedCount">0</div>
-
-            <p>
-                Lessons completed through recorded video watching.
-            </p>
-
-        </div>
-
-        <div class="stat-card">
-
-            <div class="stat-heading">
-                Overall Progress
-                <span class="stat-icon purple">↗</span>
-            </div>
-
-            <div class="stat-number">
-                <span id="progressPercent">0</span><small>%</small>
-            </div>
-
-            <div class="progress-track">
-                <div id="overallProgressBar"></div>
-            </div>
-
-        </div>
-
-        <div class="stat-card">
-
-            <div class="stat-heading">
-                Lessons Explored
-                <span class="stat-icon gold">▶</span>
-            </div>
-
-            <div class="stat-number" id="openedCount">0</div>
-
-            <p>Tutorials opened from this platform.</p>
-
-        </div>
-
-    </div>
-
-
-    <!-- CONTINUE LEARNING -->
-
-    <div class="section-heading">
-
-        <div>
-            <div class="eyebrow">PICK UP WHERE YOU LEFT OFF</div>
-            <h2>Continue Learning</h2>
-        </div>
-
-        <button type="button"
-                class="text-link"
-                data-view="my-learning">
-            My Learning →
-        </button>
-
-    </div>
-
-    <div id="continueLearning"
-         class="continue-card"></div>
-
-
-    <!-- POPULAR LESSONS -->
-
-    <div class="section-heading section-spaced">
-
-        <div>
-            <div class="eyebrow">CURATED FOR CURIOUS MINDS</div>
-
-            <h2>Popular AI Lessons</h2>
-
-            <p class="section-description">
-                Discover tutorials selected to help you get started.
-            </p>
-        </div>
-
-        <button type="button"
-                class="text-link"
-                data-view="explore">
-            View All →
-        </button>
-
-    </div>
-
-    <div class="filter-row" id="quickFilters">
-
-        <button type="button"
-                class="filter-chip active"
-                data-category="All">
-            All Lessons
-        </button>
-
-        <button type="button"
-                class="filter-chip"
-                data-category="AI Basics">
-            AI Basics
-        </button>
-
-        <button type="button"
-                class="filter-chip"
-                data-category="Generative AI">
-            Generative AI
-        </button>
-
-        <button type="button"
-                class="filter-chip"
-                data-category="AI Tools">
-            AI Tools
-        </button>
-
-        <button type="button"
-                class="filter-chip"
-                data-category="Prompt Engineering">
-            Prompt Engineering
-        </button>
-
-    </div>
-
-    <div class="lesson-grid" id="popularLessons"></div>
-
-
-    <!-- ADVERTISEMENT PLACEHOLDER -->
-
-    <div class="ad-container">
-
-        <div class="ad-label">ADVERTISEMENT</div>
-
-        <div class="ad-placeholder">
-
-            <span>✦</span>
-
-            <div>
-                <strong>Advertisement Space</strong>
-
-                <p>
-                    Reserved for advertising after the website
-                    receives the required approval.
-                </p>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =================================================
-     EXPLORE LESSONS
-================================================== -->
-
-<section class="page" id="explore">
-
-    <div class="page-intro">
-
-        <div class="eyebrow">YOUR AI LEARNING LIBRARY</div>
-
-        <h1>Explore <span>Lessons.</span></h1>
-
-        <p>
-            Search tutorials by topic, discover new tools,
-            and watch supported lessons directly inside AI Africa.
-            Complete your learning journey and work towards earning
-            badges that recognise your progress.
-        </p>
-
-    </div>
-
-    <div class="search-toolbar">
-
-        <label class="search-box">
-
-            <span>⌕</span>
-
-            <input type="search"
-                   id="lessonSearch"
-                   placeholder="Search AI lessons, tools, topics..."
-                   aria-label="Search AI lessons">
-
-        </label>
-
-        <select id="levelFilter"
-                aria-label="Filter lesson difficulty">
-
-            <option value="All">All Levels</option>
-            <option value="Beginner">Beginner</option>
-            <option value="Intermediate">Intermediate</option>
-
-        </select>
-
-    </div>
-
-    <div class="filter-row wrap"
-         id="exploreFilters"></div>
-
-    <div class="results-line">
-        <span id="resultCount">0 lessons</span>
-        <span>Supported videos play inside the learning hub</span>
-    </div>
-
-    <div class="lesson-grid" id="allLessons"></div>
-
-    <div class="ad-container">
-
-        <div class="ad-label">ADVERTISEMENT</div>
-
-        <div class="ad-placeholder">
-
-            <span>✦</span>
-
-            <div>
-                <strong>Advertisement Space</strong>
-                <p>Reserved for approved advertising.</p>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =================================================
-     MY LEARNING
-================================================== -->
-
-<section class="page" id="my-learning">
-
-    <div class="page-intro">
-
-        <div class="eyebrow">YOUR PERSONAL LEARNING SPACE</div>
-
-        <h1>My <span>Learning.</span></h1>
-
-        <p>
-            Review your learning activity, resume tutorials,
-            track completed lessons, and monitor your progress.
-        </p>
-
-    </div>
-
-    <div class="learning-summary">
-
-        <div>
-            <span>Completed Lessons</span>
-            <strong id="myCompleted">0</strong>
-        </div>
-
-        <div>
-            <span>Lessons Opened</span>
-            <strong id="myOpened">0</strong>
-        </div>
-
-        <div>
-            <span>Completion Rate</span>
-            <strong id="myPercent">0%</strong>
-        </div>
-
-    </div>
-
-    <div class="section-heading">
-
-        <div>
-            <div class="eyebrow">YOUR LEARNING HISTORY</div>
-            <h2>Learning Activity</h2>
-        </div>
-
-        <button type="button"
-                id="clearActivity"
-                class="text-link">
-            Clear Activity ↻
-        </button>
-
-    </div>
-
-    <div id="activityList"
-         class="activity-list"></div>
-
-</section>
-
-
-<!-- =================================================
-     LEARNING PATHS
-================================================== -->
-
-<section class="page" id="categories">
-
-    <div class="page-intro">
-
-        <div class="eyebrow">CHOOSE YOUR DIRECTION</div>
-
-        <h1>Learning <span>Paths.</span></h1>
-
-        <p>
-            Choose an area of artificial intelligence and
-            start developing your skills, one lesson at a time.
-        </p>
-
-    </div>
-
-    <div class="category-grid"
-         id="categoryGrid"></div>
-
-</section>
-
-
-<!-- =================================================
-     FEATURED EVENTS CAROUSEL
-================================================== -->
-
-<section class="hero-carousel"
-         id="heroCarousel"
-         aria-label="Featured AI Africa programmes">
-
-    <div class="hero-track" id="heroTrack">
-
-        <article class="hero-slide video-slide active">
-
-            <div class="hero-content">
-
-                <span class="hero-badge">
-                    🎬 CREATOR OPPORTUNITY
-                </span>
-
-                <h1>
-                    AI VIDEO<br>
-                    <span>CREATE-THON 2026</span>
-                </h1>
-
-                <p>
-                    Turn your imagination into reality.
-                    Learn AI video creation, develop cinematic prompts,
-                    tell compelling African stories, and showcase
-                    your creativity through AI-powered media.
-                </p>
-
-                <button type="button"
-                        class="hero-apply-btn"
-                        onclick="applyForEvent('creathon')"
-                        aria-haspopup="dialog">
-                    Explore Create-thon <span>↗</span>
-                </button>
-
-            </div>
-
-            <div class="hero-visual video-visual"
-                 aria-hidden="true">
-
-                <div class="visual-icon">🎬</div>
-
-                <div class="visual-caption">
-                    CREATE. INNOVATE. INSPIRE.
-                </div>
-
-            </div>
-
-        </article>
-
-
-        <article class="hero-slide hackathon-slide">
-
-            <div class="hero-content">
-
-                <span class="hero-badge">
-                    💡 BUILD THE FUTURE
-                </span>
-
-                <h1>
-                    BUILD WITH AI<br>
-                    <span>HACKATHON 2026</span>
-                </h1>
-
-                <p>
-                    Transform ideas into intelligent solutions.
-                    Learn AI concepts, practise problem-solving,
-                    develop prototypes, and explore ways to address
-                    real-world challenges.
-                </p>
-
-                <button type="button"
-                        class="hero-apply-btn"
-                        onclick="applyForEvent('hackathon')"
-                        aria-haspopup="dialog">
-                    Explore Hackathon <span>↗</span>
-                </button>
-
-            </div>
-
-            <div class="hero-visual ai-visual"
-                 aria-hidden="true">
-
-                <div class="visual-icon">🤖</div>
-
-                <div class="visual-caption">
-                    LEARN AI. BUILD SOLUTIONS.
-                </div>
-
-            </div>
-
-        </article>
-
-    </div>
-
-    <button type="button"
-            class="hero-arrow hero-prev"
-            onclick="changeHero(-1)"
-            aria-label="Previous programme">
-        &#10094;
-    </button>
-
-    <button type="button"
-            class="hero-arrow hero-next"
-            onclick="changeHero(1)"
-            aria-label="Next programme">
-        &#10095;
-    </button>
-
-    <div class="hero-dots">
-
-        <button type="button"
-                class="hero-dot active"
-                onclick="goToHero(0)"
-                aria-label="Show Video Create-thon"></button>
-
-        <button type="button"
-                class="hero-dot"
-                onclick="goToHero(1)"
-                aria-label="Show Build with AI Hackathon"></button>
-
-    </div>
-
-</section>
-
-
-<!-- =================================================
-     EVENT INFORMATION MODAL
-================================================== -->
-
-<div class="apply-modal"
-     id="applyModal"
-     role="dialog"
-     aria-modal="true"
-     aria-labelledby="applyTitle"
-     aria-describedby="applyDescription"
-     hidden>
-
-    <div class="apply-modal-content">
-
-        <button type="button"
-                class="modal-close"
-                id="closeApplyModalButton"
-                onclick="closeApplyModal()"
-                aria-label="Close programme information">
-            &times;
-        </button>
-
-        <div class="modal-icon"
-             id="applyIcon"
-             aria-hidden="true">
-            ✦
-        </div>
-
-        <span class="event-modal-eyebrow"
-              id="applyEyebrow">
-            AI AFRICA · LEARNING OPPORTUNITY
-        </span>
-
-        <h2 id="applyTitle">Build Your Future with AI</h2>
-
-        <p id="applyDescription">
-            Learn AI, complete lessons, earn learning badges,
-            and develop skills for your next project.
-        </p>
-
-        <div class="event-modal-highlights"
-             id="applyHighlights">
-
-            <div class="event-highlight">
-                <span aria-hidden="true">✦</span>
-                <span>Learn new AI skills</span>
-            </div>
-
-            <div class="event-highlight">
-                <span aria-hidden="true">◈</span>
-                <span>Track your learning progress</span>
-            </div>
-
-            <div class="event-highlight">
-                <span aria-hidden="true">↗</span>
-                <span>Prepare to build and create</span>
-            </div>
-
-        </div>
-
-        <div class="event-qualification-note"
-             id="eventQualificationNote">
-
-            <strong>Your learning pathway</strong>
-
-            <p>
-                Complete the relevant lessons and earn the available
-                learning badges to work towards qualifying for
-                programme opportunities. Badges do not automatically
-                guarantee admission or selection; official programme
-                rules and eligibility requirements still apply.
-            </p>
-
-        </div>
-
-        <button type="button"
-                class="modal-ok-btn"
-                id="startLearningButton"
-                onclick="startEventLearning()">
-            Start Learning <span aria-hidden="true">↗</span>
-        </button>
-
-        <span class="event-modal-footer">
-            LEARN · CREATE · INNOVATE
-        </span>
-
-    </div>
-
-</div>
-
-
-<!-- =================================================
-     FOOTER AND TECHNOLOGY ECOSYSTEM
-================================================== -->
-
-<footer class="footer">
-
-    <section class="program-sponsors">
-
-        <div class="sponsors-heading">
-            <span class="sponsors-line"></span>
-            <h3>OUR TECHNOLOGY ECOSYSTEM</h3>
-            <span class="sponsors-line"></span>
-        </div>
-
-        <p class="sponsors-description">
-            Celebrating the technology platforms helping
-            creators and innovators build the future.
-        </p>
-
-        <div class="sponsors-marquee">
-
-            <div class="sponsors-track">
-
-                <div class="sponsor-card">
-                    <div class="sponsor-logo microsoft-logo">Microsoft</div>
-                    <span>Technology Ecosystem</span>
-                </div>
-
-                <div class="sponsor-card">
-                    <div class="sponsor-logo google-logo">Google</div>
-                    <span>Technology Ecosystem</span>
-                </div>
-
-                <div class="sponsor-card">
-                    <div class="sponsor-logo amazon-logo">amazon</div>
-                    <span>Cloud Technology</span>
-                </div>
-
-                <div class="sponsor-card">
-                    <div class="sponsor-logo oracle-logo">ORACLE</div>
-                    <span>Technology Ecosystem</span>
-                </div>
-
-                <div class="sponsor-card" aria-hidden="true">
-                    <div class="sponsor-logo microsoft-logo">Microsoft</div>
-                    <span>Technology Ecosystem</span>
-                </div>
-
-                <div class="sponsor-card" aria-hidden="true">
-                    <div class="sponsor-logo google-logo">Google</div>
-                    <span>Technology Ecosystem</span>
-                </div>
-
-                <div class="sponsor-card" aria-hidden="true">
-                    <div class="sponsor-logo amazon-logo">amazon</div>
-                    <span>Cloud Technology</span>
-                </div>
-
-                <div class="sponsor-card" aria-hidden="true">
-                    <div class="sponsor-logo oracle-logo">ORACLE</div>
-                    <span>Technology Ecosystem</span>
+                    <p>
+                        Reserved for advertising after the website
+                        receives the required approval.
+                    </p>
                 </div>
 
             </div>
 
         </div>
-
-        <p class="sponsors-note">
-            Interested in partnering with AI Africa?
-            <a href="mailto:partnerships@aiafrica.com">
-                Contact our team
-            </a>
-        </p>
 
     </section>
 
-    <div class="footer-logo">
-        ✦ AI AFRICA
+
+    <!-- =================================================
+         EXPLORE LESSONS
+    ================================================== -->
+
+    <section class="page" id="explore">
+
+        <div class="page-intro">
+
+            <div class="eyebrow">YOUR AI LEARNING LIBRARY</div>
+
+            <h1>Explore <span>Lessons.</span></h1>
+
+            <p>
+                Search tutorials by topic, discover new tools,
+                and watch supported lessons directly inside AI Africa.
+                Complete your learning journey and work towards earning
+                badges that recognise your progress.
+            </p>
+
+        </div>
+
+        <div class="search-toolbar">
+
+            <label class="search-box">
+
+                <span>⌕</span>
+
+                <input type="search"
+                       id="lessonSearch"
+                       placeholder="Search AI lessons, tools, topics..."
+                       aria-label="Search AI lessons">
+
+            </label>
+
+            <select id="levelFilter"
+                    aria-label="Filter lesson difficulty">
+
+                <option value="All">All Levels</option>
+                <option value="Beginner">Beginner</option>
+                <option value="Intermediate">Intermediate</option>
+
+            </select>
+
+        </div>
+
+        <div class="filter-row wrap"
+             id="exploreFilters"></div>
+
+        <div class="results-line">
+            <span id="resultCount">0 lessons</span>
+            <span>Supported videos play inside the learning hub</span>
+        </div>
+
+        <div class="lesson-grid" id="allLessons"></div>
+
+        <div class="ad-container">
+
+            <div class="ad-label">ADVERTISEMENT</div>
+
+            <div class="ad-placeholder">
+
+                <span>✦</span>
+
+                <div>
+                    <strong>Advertisement Space</strong>
+                    <p>Reserved for approved advertising.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         MY LEARNING
+    ================================================== -->
+
+    <section class="page" id="my-learning">
+
+        <div class="page-intro">
+
+            <div class="eyebrow">YOUR PERSONAL LEARNING SPACE</div>
+
+            <h1>My <span>Learning.</span></h1>
+
+            <p>
+                Review your learning activity, resume tutorials,
+                track completed lessons, and monitor your progress.
+            </p>
+
+        </div>
+
+        <div class="learning-summary">
+
+            <div>
+                <span>Completed Lessons</span>
+                <strong id="myCompleted">0</strong>
+            </div>
+
+            <div>
+                <span>Lessons Opened</span>
+                <strong id="myOpened">0</strong>
+            </div>
+
+            <div>
+                <span>Completion Rate</span>
+                <strong id="myPercent">0%</strong>
+            </div>
+
+        </div>
+
+        <div class="section-heading">
+
+            <div>
+                <div class="eyebrow">YOUR LEARNING HISTORY</div>
+                <h2>Learning Activity</h2>
+            </div>
+
+            <button type="button"
+                    id="clearActivity"
+                    class="text-link">
+                Clear Activity ↻
+            </button>
+
+        </div>
+
+        <div id="activityList"
+             class="activity-list"></div>
+
+    </section>
+
+
+    <!-- =================================================
+         LEARNING PATHS
+    ================================================== -->
+
+    <section class="page" id="categories">
+
+        <div class="page-intro">
+
+            <div class="eyebrow">CHOOSE YOUR DIRECTION</div>
+
+            <h1>Learning <span>Paths.</span></h1>
+
+            <p>
+                Choose an area of artificial intelligence and
+                start developing your skills, one lesson at a time.
+            </p>
+
+        </div>
+
+        <div class="category-grid"
+             id="categoryGrid"></div>
+
+    </section>
+
+
+    <!-- =================================================
+         FEATURED EVENTS CAROUSEL
+===================================================== -->
+
+    <section class="hero-carousel"
+             id="heroCarousel"
+             aria-label="Featured AI Africa programmes">
+
+        <div class="hero-track" id="heroTrack">
+
+            <!-- CREATE-THON -->
+
+            <article class="hero-slide video-slide active">
+
+                <div class="hero-content">
+
+                    <span class="hero-badge">
+                        🎬 CREATOR OPPORTUNITY
+                    </span>
+
+                    <h1>
+                        AI VIDEO<br>
+                        <span>CREATE-THON 2026</span>
+                    </h1>
+
+                    <p>
+                        Turn your imagination into reality.
+                        Learn AI video creation, develop cinematic prompts,
+                        tell compelling African stories, and showcase
+                        your creativity through AI-powered media.
+                    </p>
+
+                    <button type="button"
+                            class="hero-apply-btn"
+                            onclick="applyForEvent('creathon')"
+                            aria-haspopup="dialog">
+                        Explore Create-thon <span>↗</span>
+                    </button>
+
+                </div>
+
+                <div class="hero-visual video-visual"
+                     aria-hidden="true">
+
+                    <div class="visual-icon">🎬</div>
+
+                    <div class="visual-caption">
+                        CREATE. INNOVATE. INSPIRE.
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- HACKATHON -->
+
+            <article class="hero-slide hackathon-slide">
+
+                <div class="hero-content">
+
+                    <span class="hero-badge">
+                        💡 BUILD THE FUTURE
+                    </span>
+
+                    <h1>
+                        BUILD WITH AI<br>
+                        <span>HACKATHON 2026</span>
+                    </h1>
+
+                    <p>
+                        Transform ideas into intelligent solutions.
+                        Learn AI concepts, practise problem-solving,
+                        develop prototypes, and explore ways to address
+                        real-world challenges.
+                    </p>
+
+                    <button type="button"
+                            class="hero-apply-btn"
+                            onclick="applyForEvent('hackathon')"
+                            aria-haspopup="dialog">
+                        Explore Hackathon <span>↗</span>
+                    </button>
+
+                </div>
+
+                <div class="hero-visual ai-visual"
+                     aria-hidden="true">
+
+                    <div class="visual-icon">🤖</div>
+
+                    <div class="visual-caption">
+                        LEARN AI. BUILD SOLUTIONS.
+                    </div>
+
+                </div>
+
+            </article>
+
+        </div>
+
+        <button type="button"
+                class="hero-arrow hero-prev"
+                onclick="changeHero(-1)"
+                aria-label="Previous programme">
+            &#10094;
+        </button>
+
+        <button type="button"
+                class="hero-arrow hero-next"
+                onclick="changeHero(1)"
+                aria-label="Next programme">
+            &#10095;
+        </button>
+
+        <div class="hero-dots">
+
+            <button type="button"
+                    class="hero-dot active"
+                    onclick="goToHero(0)"
+                    aria-label="Show Video Create-thon"></button>
+
+            <button type="button"
+                    class="hero-dot"
+                    onclick="goToHero(1)"
+                    aria-label="Show Build with AI Hackathon"></button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         EVENT INFORMATION MODAL
+===================================================== -->
+
+    <div class="apply-modal"
+         id="applyModal"
+         role="dialog"
+         aria-modal="true"
+         aria-labelledby="applyTitle"
+         aria-describedby="applyDescription"
+         hidden>
+
+        <div class="apply-modal-content">
+
+            <button type="button"
+                    class="modal-close"
+                    id="closeApplyModalButton"
+                    onclick="closeApplyModal()"
+                    aria-label="Close programme information">
+                &times;
+            </button>
+
+            <div class="modal-icon"
+                 id="applyIcon"
+                 aria-hidden="true">
+                ✦
+            </div>
+
+            <span class="event-modal-eyebrow"
+                  id="applyEyebrow">
+                AI AFRICA · LEARNING OPPORTUNITY
+            </span>
+
+            <h2 id="applyTitle">Build Your Future with AI</h2>
+
+            <p id="applyDescription">
+                Learn AI, complete lessons, earn learning badges,
+                and develop skills for your next project.
+            </p>
+
+            <div class="event-modal-highlights"
+                 id="applyHighlights">
+
+                <div class="event-highlight">
+                    <span aria-hidden="true">✦</span>
+                    <span>Learn new AI skills</span>
+                </div>
+
+                <div class="event-highlight">
+                    <span aria-hidden="true">◈</span>
+                    <span>Track your learning progress</span>
+                </div>
+
+                <div class="event-highlight">
+                    <span aria-hidden="true">↗</span>
+                    <span>Prepare to build and create</span>
+                </div>
+
+            </div>
+
+            <div class="event-qualification-note"
+                 id="eventQualificationNote">
+
+                <strong>Your learning pathway</strong>
+
+                <p>
+                    Complete the relevant lessons and earn the available
+                    learning badges to work towards qualifying for
+                    programme opportunities. Badges do not automatically
+                    guarantee admission or selection; official programme
+                    rules and eligibility requirements still apply.
+                </p>
+
+            </div>
+
+            <button type="button"
+                    class="modal-ok-btn"
+                    id="startLearningButton"
+                    onclick="startEventLearning()">
+                Start Learning <span aria-hidden="true">↗</span>
+            </button>
+
+            <span class="event-modal-footer">
+                LEARN · CREATE · INNOVATE
+            </span>
+
+        </div>
+
     </div>
 
-    <p>Learn together. Build boldly. Shape tomorrow.</p>
 
-    <span>
-        © <span id="year"></span> AI Africa Learning Hub
-    </span>
+    <!-- =================================================
+         FOOTER AND TECHNOLOGY ECOSYSTEM
+===================================================== -->
 
-</footer>
+    <footer class="footer">
 
-</main><!-- =====================================================
+        <section class="program-sponsors">
+
+            <div class="sponsors-heading">
+                <span class="sponsors-line"></span>
+                <h3>OUR TECHNOLOGY ECOSYSTEM</h3>
+                <span class="sponsors-line"></span>
+            </div>
+
+            <p class="sponsors-description">
+                Celebrating the technology platforms helping
+                creators and innovators build the future.
+            </p>
+
+            <div class="sponsors-marquee">
+
+                <div class="sponsors-track">
+
+                    <div class="sponsor-card">
+                        <div class="sponsor-logo microsoft-logo">
+                            Microsoft
+                        </div>
+                        <span>Technology Ecosystem</span>
+                    </div>
+
+                    <div class="sponsor-card">
+                        <div class="sponsor-logo google-logo">
+                            Google
+                        </div>
+                        <span>Technology Ecosystem</span>
+                    </div>
+
+                    <div class="sponsor-card">
+                        <div class="sponsor-logo amazon-logo">
+                            amazon
+                        </div>
+                        <span>Cloud Technology</span>
+                    </div>
+
+                    <div class="sponsor-card">
+                        <div class="sponsor-logo oracle-logo">
+                            ORACLE
+                        </div>
+                        <span>Technology Ecosystem</span>
+                    </div>
+
+                    <!-- DUPLICATED CARDS FOR THE MARQUEE -->
+
+                    <div class="sponsor-card" aria-hidden="true">
+                        <div class="sponsor-logo microsoft-logo">
+                            Microsoft
+                        </div>
+                        <span>Technology Ecosystem</span>
+                    </div>
+
+                    <div class="sponsor-card" aria-hidden="true">
+                        <div class="sponsor-logo google-logo">
+                            Google
+                        </div>
+                        <span>Technology Ecosystem</span>
+                    </div>
+
+                    <div class="sponsor-card" aria-hidden="true">
+                        <div class="sponsor-logo amazon-logo">
+                            amazon
+                        </div>
+                        <span>Cloud Technology</span>
+                    </div>
+
+                    <div class="sponsor-card" aria-hidden="true">
+                        <div class="sponsor-logo oracle-logo">
+                            ORACLE
+                        </div>
+                        <span>Technology Ecosystem</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <p class="sponsors-note">
+                Interested in partnering with AI Africa?
+                <a href="mailto:partnerships@aiafrica.com">
+                    Contact our team
+                </a>
+            </p>
+
+        </section>
+
+        <div class="footer-logo">
+            ✦ AI AFRICA
+        </div>
+
+        <p>Learn together. Build boldly. Shape tomorrow.</p>
+
+        <span>
+            © <span id="year"></span> AI Africa Learning Hub
+        </span>
+
+    </footer>
+
+</main>
+
+
+<!-- =====================================================
      GLOBAL TOAST
-===================================================== --><div id="toast"
+===================================================== -->
+
+<div id="toast"
      class="toast"
      role="status"
-     aria-live="polite"></div><!-- =====================================================
+     aria-live="polite"></div>
+
+
+<!-- =====================================================
      SIGN-IN / SIGN-UP MODAL
-===================================================== --><div class="auth-modal"
+===================================================== -->
+
+<div class="auth-modal"
      id="authModal"
-     role="dialog"
-     aria-modal="true"
-     aria-labelledby="authModalTitle"
-     hidden><div class="auth-modal-card">
+     hidden>
 
-    <button type="button"
-            id="closeAuthModal"
-            class="auth-close-button"
-            aria-label="Close authentication window">
-        &times;
-    </button>
+    <div class="auth-modal-card">
 
-    <div class="auth-brand">
-        <span class="auth-brand-icon">✦</span>
-        <h2 id="authModalTitle">AI Africa</h2>
-    </div>
-
-    <p class="auth-subtitle">
-        Continue your journey into AI and technology.
-    </p>
-
-
-    <!-- SIGN UP FORM -->
-
-    <form id="demoSignUpForm" hidden>
-
-        <h3>Create Your Account</h3>
-
-        <label for="signupFirstName">First Name</label>
-
-        <input type="text"
-               id="signupFirstName"
-               autocomplete="given-name"
-               required>
-
-        <label for="signupLastName">Last Name</label>
-
-        <input type="text"
-               id="signupLastName"
-               autocomplete="family-name"
-               required>
-
-        <label for="signupEmail">Email Address</label>
-
-        <input type="email"
-               id="signupEmail"
-               autocomplete="email"
-               required>
-
-        <label for="signupPassword">Password</label>
-
-        <input type="password"
-               id="signupPassword"
-               autocomplete="new-password"
-               minlength="8"
-               required>
-
-        <button type="submit"
-                class="auth-submit-button">
-            Create Demo Account
+        <button type="button"
+                id="closeAuthModal"
+                class="auth-close-button"
+                aria-label="Close">
+            &times;
         </button>
 
-        <p class="auth-switch-text">
-            Already registered?
-            <button type="button" id="switchToSignIn">
+        <div class="auth-brand">
+            <span class="auth-brand-icon">✦</span>
+            <h2>AI Africa</h2>
+        </div>
+
+        <p class="auth-subtitle">
+            Continue your journey into AI and technology.
+        </p>
+
+
+        <!-- SIGN UP FORM -->
+
+        <form id="demoSignUpForm" hidden>
+
+            <h3>Create Your Account</h3>
+
+            <label for="signupFirstName">First Name</label>
+
+            <input type="text"
+                   id="signupFirstName"
+                   autocomplete="given-name"
+                   required>
+
+            <label for="signupLastName">Last Name</label>
+
+            <input type="text"
+                   id="signupLastName"
+                   autocomplete="family-name"
+                   required>
+
+            <label for="signupEmail">Email Address</label>
+
+            <input type="email"
+                   id="signupEmail"
+                   autocomplete="email"
+                   required>
+
+            <label for="signupPassword">Password</label>
+
+            <input type="password"
+                   id="signupPassword"
+                   autocomplete="new-password"
+                   minlength="8"
+                   required>
+
+            <button type="submit"
+                    class="auth-submit-button">
+                Create Demo Account
+            </button>
+
+            <p class="auth-switch-text">
+                Already registered?
+                <button type="button"
+                        id="switchToSignIn">
+                    Sign In
+                </button>
+            </p>
+
+        </form>
+
+
+        <!-- SIGN IN FORM -->
+
+        <form id="demoSignInForm" hidden>
+
+            <h3>Welcome Back</h3>
+
+            <label for="signinEmail">Email Address</label>
+
+            <input type="email"
+                   id="signinEmail"
+                   autocomplete="username"
+                   required>
+
+            <label for="signinPassword">Password</label>
+
+            <input type="password"
+                   id="signinPassword"
+                   autocomplete="current-password"
+                   required>
+
+            <button type="submit"
+                    class="auth-submit-button">
                 Sign In
             </button>
+
+            <p class="auth-switch-text">
+                New to AI Africa?
+                <button type="button"
+                        id="switchToSignUp">
+                    Create Account
+                </button>
+            </p>
+
+        </form>
+
+        <p id="authMessage"
+           class="auth-message"
+           role="status"
+           aria-live="polite"></p>
+
+        <p class="demo-notice">
+            Demo mode: account information is stored in this browser.
+            Do not use a real password. This is not production-grade
+            authentication.
         </p>
 
-    </form>
-
-
-    <!-- SIGN IN FORM -->
-
-    <form id="demoSignInForm" hidden>
-
-        <h3>Welcome Back</h3>
-
-        <label for="signinEmail">Email Address</label>
-
-        <input type="email"
-               id="signinEmail"
-               autocomplete="username"
-               required>
-
-        <label for="signinPassword">Password</label>
-
-        <input type="password"
-               id="signinPassword"
-               autocomplete="current-password"
-               required>
-
-        <button type="submit"
-                class="auth-submit-button">
-            Sign In
-        </button>
-
-        <p class="auth-switch-text">
-            New to AI Africa?
-            <button type="button" id="switchToSignUp">
-                Create Account
-            </button>
-        </p>
-
-    </form>
-
-    <p id="authMessage"
-       class="auth-message"
-       role="status"
-       aria-live="polite"></p>
-
-    <p class="demo-notice">
-        Demo mode: account information is stored in this browser.
-        Do not use a real password. This is not production-grade
-        authentication.
-    </p>
+    </div>
 
 </div>
 
-</div><!-- =====================================================
+
+<!-- =====================================================
      EMBEDDED YOUTUBE LESSON PLAYER
-===================================================== --><div id="lessonPlayerModal"
+===================================================== -->
+
+<div id="lessonPlayerModal"
      class="lesson-player-modal"
      role="dialog"
      aria-modal="true"
      aria-labelledby="lessonPlayerTitle"
-     hidden><div class="lesson-player-panel">
+     hidden>
 
-    <div class="lesson-player-header">
+    <div class="lesson-player-panel">
 
-        <div>
-            <span class="lesson-player-label">
-                AI AFRICA LEARNING HUB
-            </span>
+        <div class="lesson-player-header">
 
-            <h2 id="lessonPlayerTitle">Tutorial</h2>
+            <div>
+                <span class="lesson-player-label">
+                    AI AFRICA LEARNING HUB
+                </span>
+
+                <h2 id="lessonPlayerTitle">Tutorial</h2>
+            </div>
+
+            <button type="button"
+                    id="closeLessonPlayer"
+                    class="lesson-player-close"
+                    aria-label="Close tutorial">
+                &times;
+            </button>
+
         </div>
 
-        <button type="button"
-                id="closeLessonPlayer"
-                class="lesson-player-close"
-                aria-label="Close tutorial">
-            &times;
-        </button>
+        <div id="youtubePlayerContainer">
+            <div id="youtubePlayer"></div>
+        </div>
 
-    </div>
+        <div class="lesson-player-information">
 
-    <div id="youtubePlayerContainer">
-        <div id="youtubePlayer"></div>
-    </div>
+            <p id="lessonPlayerDescription"></p>
 
-    <!-- NEW: OPEN ON YOUTUBE -->
+            <div class="lesson-watch-status">
 
-    <div class="youtube-external-actions"
-         id="youtubeExternalActions"
-         hidden>
+                <span id="lessonWatchStatus">
+                    Watch the tutorial to earn completion credit.
+                </span>
 
-        <div class="youtube-external-copy">
-            <strong>Prefer watching on YouTube?</strong>
+                <span id="lessonWatchPercent">0%</span>
 
-            <p>
-                Open the original video on YouTube to continue watching there.
+            </div>
+
+            <div class="lesson-watch-track">
+                <div id="lessonWatchBar"></div>
+            </div>
+
+            <p class="lesson-watch-note">
+                Your progress is recorded while the embedded video
+                plays. Completion should be awarded only after the
+                required amount of genuine playback has been recorded.
             </p>
-        </div>
-
-        <a id="openOnYouTube"
-           class="youtube-external-button"
-           href="#"
-           target="_blank"
-           rel="noopener noreferrer"
-           aria-label="Open this lesson on YouTube in a new tab"
-           hidden>
-
-            <span aria-hidden="true">▶</span>
-            Open on YouTube
-            <span aria-hidden="true">↗</span>
-
-        </a>
-
-    </div>
-
-    <div class="lesson-player-information">
-
-        <p id="lessonPlayerDescription"></p>
-
-        <div class="lesson-watch-status">
-
-            <span id="lessonWatchStatus">
-                Watch the tutorial to earn completion credit.
-            </span>
-
-            <span id="lessonWatchPercent">0%</span>
 
         </div>
-
-        <div class="lesson-watch-track">
-            <div id="lessonWatchBar"></div>
-        </div>
-
-        <p class="lesson-watch-note">
-            Your progress is recorded while the embedded video
-            plays. Completion should be awarded only after the
-            required amount of genuine playback has been recorded.
-        </p>
 
     </div>
 
 </div>
 
-</div><!-- =====================================================
-     PAGE-SPECIFIC STYLES
-===================================================== --><style>
+
+<!-- =====================================================
+     LESSON PLAYER STYLES
+===================================================== -->
+
+<style>
     [hidden] {
         display: none !important;
     }
-
-    /* YOUTUBE PLAYER MODAL */
 
     .lesson-player-modal {
         position: fixed;
@@ -1257,72 +1297,6 @@
         border: 0;
     }
 
-    /* OPEN ON YOUTUBE BUTTON */
-
-    .youtube-external-actions {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 16px;
-        margin-top: 16px;
-        padding: 16px;
-        border: 1px solid rgba(98, 229, 237, 0.18);
-        border-radius: 14px;
-        background: rgba(98, 229, 237, 0.045);
-    }
-
-    .youtube-external-copy {
-        min-width: 0;
-    }
-
-    .youtube-external-copy strong {
-        display: block;
-        margin-bottom: 5px;
-        color: #edf7ff;
-        font-family: "Space Grotesk", sans-serif;
-        font-size: 13px;
-        font-weight: 700;
-    }
-
-    .youtube-external-copy p {
-        margin: 0;
-        color: #a8b8ce;
-        font-size: 12px;
-        line-height: 1.7;
-    }
-
-    .youtube-external-button {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-        gap: 9px;
-        min-height: 42px;
-        padding: 11px 16px;
-        border: 1px solid rgba(255, 90, 90, 0.45);
-        border-radius: 10px;
-        background: rgba(255, 65, 65, 0.10);
-        color: #ff8585;
-        font-size: 12px;
-        font-weight: 700;
-        text-decoration: none;
-        transition:
-            background 0.2s ease,
-            border-color 0.2s ease,
-            transform 0.2s ease;
-    }
-
-    .youtube-external-button:hover {
-        background: rgba(255, 65, 65, 0.18);
-        border-color: #ff8585;
-        transform: translateY(-1px);
-    }
-
-    .youtube-external-button:focus-visible {
-        outline: 3px solid #62e5ed;
-        outline-offset: 4px;
-    }
-
     .lesson-player-information {
         margin-top: 22px;
     }
@@ -1386,7 +1360,7 @@
         overflow: hidden;
     }
 
-    /* EVENT QUALIFICATION NOTE */
+    /* EVENT MODAL ADDITIONS */
 
     .event-qualification-note {
         margin: 20px 0;
@@ -1448,18 +1422,6 @@
             border-radius: 11px;
         }
 
-        .youtube-external-actions {
-            align-items: stretch;
-            flex-direction: column;
-            gap: 12px;
-            padding: 14px;
-        }
-
-        .youtube-external-button {
-            width: 100%;
-            box-sizing: border-box;
-        }
-
         .lesson-player-information {
             margin-top: 16px;
         }
@@ -1475,17 +1437,35 @@
         }
 
         .lesson-player-close,
-        #lessonWatchBar,
-        .youtube-external-button {
+        #lessonWatchBar {
             transition: none;
         }
     }
-</style><!-- =====================================================
-     JAVASCRIPT DEPENDENCIES
+</style>
+
+
+<!-- =====================================================
+     JAVASCRIPT
      Preserve dependency order.
-===================================================== --><script src="auth.js"></script><script src="courses.js"></script><script src="learning-core.js"></script><script src="lesson-player.js"></script><script src="script.js"></script><!-- =====================================================
+===================================================== -->
+
+<script src="auth.js"></script>
+<script src="courses.js"></script>
+<script src="learning-core.js"></script>
+<script src="lesson-player.js"></script>
+<script src="script.js"></script>
+
+
+<!-- =====================================================
      EVENT MODAL INTEGRATION
-===================================================== --><script>
+
+     Event-specific content is handled here.
+     The existing script.js remains responsible for
+     navigation, lesson rendering, progress and other
+     application functionality.
+===================================================== -->
+
+<script>
 (function () {
     "use strict";
 
@@ -1581,6 +1561,12 @@
     function navigateToLearning() {
         closeApplyModal();
 
+        /*
+         * Prefer the app's existing navigation system.
+         * The fallback also works if the normal navigation
+         * handler has not been registered.
+         */
+
         const exploreButton = document.querySelector(
             '[data-view="explore"]'
         );
@@ -1596,7 +1582,6 @@
                 });
 
                 explorePage.classList.add("active");
-
                 explorePage.scrollIntoView({
                     behavior: "smooth",
                     block: "start"
@@ -1617,6 +1602,11 @@
         }
 
         const requestedProgramme = String(programme || "").toLowerCase();
+
+        /*
+         * Support older calls without an argument by identifying
+         * the currently visible carousel slide.
+         */
 
         if (requestedProgramme === "hackathon") {
             selectedProgramme = "hackathon";
@@ -1704,5 +1694,7 @@
     });
 
 })();
-</script></body>
+</script>
+
+</body>
 </html>
