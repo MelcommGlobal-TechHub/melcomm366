@@ -3,140 +3,2003 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Melcomm366</title>
-	<style>
-	/*	body{background-image: url(drone.jpg);}*/
-	</style>
-	
-    <link rel="stylesheet" href="index.css">
+    <meta name="theme-color" content="#080d1c">
+
+    <meta name="description"
+          content="GoNix is your digital space to learn AI, explore creative tools, build projects, connect with creators, and discover digital opportunities.">
+
+    <meta name="keywords"
+          content="GoNix, artificial intelligence, AI learning, creator economy, AI tools, digital skills, African technology">
+
+    <meta property="og:title" content="GoNix — Learn. Create. Connect. Earn.">
+    <meta property="og:description"
+          content="Explore AI, build your skills, create digital projects, and connect with a growing digital community.">
+    <meta property="og:type" content="website">
+
+    <title>GoNix — Learn. Create. Connect. Earn.</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        /* ==========================================
+           GONIX HOMEPAGE ENHANCEMENTS
+           Uses the existing GoNix design system.
+           ========================================== */
+
+        :root {
+            --gx-bg: #080d1c;
+            --gx-panel: rgba(17, 25, 48, 0.82);
+            --gx-border: rgba(150, 170, 220, 0.15);
+            --gx-blue: #4776ff;
+            --gx-cyan: #4de5ff;
+            --gx-purple: #a783ff;
+            --gx-text: #f5f7ff;
+            --gx-muted: #a5afc7;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 100px;
+        }
+
+        body {
+            margin: 0;
+            background: var(--gx-bg);
+            color: var(--gx-text);
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        button,
+        input {
+            font: inherit;
+        }
+
+        .gx-container {
+            width: min(1180px, calc(100% - 40px));
+            margin-inline: auto;
+        }
+
+        .gx-announcement {
+            padding: 10px 16px;
+            text-align: center;
+            background: linear-gradient(
+                90deg,
+                rgba(71, 118, 255, 0.16),
+                rgba(167, 131, 255, 0.16),
+                rgba(77, 229, 255, 0.12)
+            );
+            border-bottom: 1px solid var(--gx-border);
+            font-size: 0.85rem;
+            color: #dce5ff;
+        }
+
+        .gx-announcement a {
+            color: var(--gx-cyan);
+            font-weight: 700;
+            margin-left: 6px;
+        }
+
+        .gx-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(8, 13, 28, 0.91);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--gx-border);
+        }
+
+        .gx-nav {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 22px;
+        }
+
+        .gx-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 11px;
+            color: white;
+            font-size: 1.55rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            white-space: nowrap;
+        }
+
+        .gx-brand-mark {
+            width: 43px;
+            height: 43px;
+            display: grid;
+            place-items: center;
+            border-radius: 14px;
+            color: white;
+            background: linear-gradient(135deg, var(--gx-blue), var(--gx-purple));
+            box-shadow: 0 7px 28px rgba(71, 118, 255, 0.25);
+            font-weight: 900;
+        }
+
+        .gx-brand span:last-child {
+            background: linear-gradient(90deg, white, var(--gx-cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .gx-desktop-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 23px;
+        }
+
+        .gx-desktop-links a {
+            color: #c3cce1;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .gx-desktop-links a:hover {
+            color: var(--gx-cyan);
+        }
+
+        .gx-nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .gx-btn {
+            min-height: 44px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            padding: 11px 18px;
+            border-radius: 12px;
+            border: 1px solid var(--gx-border);
+            font-weight: 750;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition:
+                transform 0.2s ease,
+                border-color 0.2s ease,
+                background 0.2s ease;
+        }
+
+        .gx-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .gx-btn-primary {
+            background: linear-gradient(135deg, var(--gx-blue), #7555f7);
+            border-color: transparent;
+            color: white;
+            box-shadow: 0 8px 28px rgba(71, 118, 255, 0.18);
+        }
+
+        .gx-btn-secondary {
+            background: rgba(255, 255, 255, 0.045);
+            color: white;
+        }
+
+        .gx-menu-button {
+            display: none;
+            width: 44px;
+            height: 44px;
+            place-items: center;
+            border-radius: 12px;
+            border: 1px solid var(--gx-border);
+            background: rgba(255, 255, 255, 0.04);
+            color: white;
+            font-size: 1.35rem;
+            cursor: pointer;
+        }
+
+        .gx-mobile-menu {
+            display: none;
+            padding: 12px 20px 22px;
+            border-top: 1px solid var(--gx-border);
+            background: #0b1122;
+        }
+
+        .gx-mobile-menu.is-open {
+            display: grid;
+            gap: 5px;
+        }
+
+        .gx-mobile-menu a {
+            display: block;
+            padding: 13px 12px;
+            color: #dce5ff;
+            border-radius: 9px;
+        }
+
+        .gx-mobile-menu a:hover {
+            background: rgba(71, 118, 255, 0.12);
+        }
+
+        .gx-hero {
+            position: relative;
+            isolation: isolate;
+            padding: 100px 0 82px;
+        }
+
+        .gx-hero::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            width: 580px;
+            height: 580px;
+            left: -230px;
+            top: -150px;
+            border-radius: 50%;
+            background: rgba(71, 118, 255, 0.14);
+            filter: blur(100px);
+            pointer-events: none;
+        }
+
+        .gx-hero::after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            width: 450px;
+            height: 450px;
+            right: -160px;
+            top: 40px;
+            border-radius: 50%;
+            background: rgba(167, 131, 255, 0.12);
+            filter: blur(100px);
+            pointer-events: none;
+        }
+
+        .gx-hero-grid {
+            display: grid;
+            grid-template-columns: 1.08fr 0.92fr;
+            align-items: center;
+            gap: 55px;
+        }
+
+        .gx-eyebrow {
+            width: fit-content;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            padding: 8px 12px;
+            border: 1px solid rgba(77, 229, 255, 0.22);
+            border-radius: 999px;
+            background: rgba(77, 229, 255, 0.055);
+            color: #a6f3ff;
+            font-size: 0.8rem;
+            font-weight: 750;
+        }
+
+        .gx-status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #5fffc3;
+            box-shadow: 0 0 13px rgba(95, 255, 195, 0.6);
+        }
+
+        .gx-hero h1 {
+            max-width: 760px;
+            margin: 25px 0 20px;
+            font-size: clamp(2.8rem, 6vw, 5.25rem);
+            line-height: 1.02;
+            letter-spacing: -0.065em;
+            font-weight: 900;
+        }
+
+        .gx-gradient-text {
+            background: linear-gradient(
+                95deg,
+                var(--gx-cyan) 0%,
+                #7f9bff 48%,
+                var(--gx-purple) 100%
+            );
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .gx-hero-copy {
+            max-width: 590px;
+            color: var(--gx-muted);
+            font-size: 1.08rem;
+            line-height: 1.85;
+        }
+
+        .gx-hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .gx-trust-line {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-top: 25px;
+            color: #b4bfd7;
+            font-size: 0.82rem;
+        }
+
+        .gx-trust-line span {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .gx-check {
+            color: #6fffc1;
+            font-weight: 900;
+        }
+
+        .gx-visual {
+            position: relative;
+            min-width: 0;
+        }
+
+        .gx-dashboard {
+            position: relative;
+            padding: 22px;
+            border: 1px solid rgba(160, 180, 240, 0.2);
+            border-radius: 25px;
+            background: linear-gradient(
+                145deg,
+                rgba(25, 36, 67, 0.94),
+                rgba(12, 19, 39, 0.96)
+            );
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.35);
+            overflow: hidden;
+        }
+
+        .gx-dashboard::before {
+            content: "";
+            position: absolute;
+            width: 230px;
+            height: 230px;
+            right: -100px;
+            top: -100px;
+            border-radius: 50%;
+            background: rgba(71, 118, 255, 0.2);
+            filter: blur(50px);
+            pointer-events: none;
+        }
+
+        .gx-dash-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .gx-dash-title {
+            font-size: 0.95rem;
+            font-weight: 800;
+        }
+
+        .gx-dash-caption {
+            margin-top: 5px;
+            color: var(--gx-muted);
+            font-size: 0.76rem;
+        }
+
+        .gx-live-badge {
+            padding: 7px 10px;
+            border: 1px solid rgba(95, 255, 195, 0.22);
+            border-radius: 999px;
+            color: #7dffca;
+            background: rgba(95, 255, 195, 0.06);
+            font-size: 0.7rem;
+            font-weight: 800;
+        }
+
+        .gx-dash-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 13px;
+        }
+
+        .gx-mini-card {
+            min-height: 135px;
+            padding: 17px;
+            border: 1px solid var(--gx-border);
+            border-radius: 17px;
+            background: rgba(255, 255, 255, 0.035);
+            transition:
+                transform 0.2s ease,
+                border-color 0.2s ease;
+        }
+
+        .gx-mini-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(77, 229, 255, 0.35);
+        }
+
+        .gx-mini-icon {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 15px;
+            border-radius: 13px;
+            background: rgba(71, 118, 255, 0.15);
+            font-size: 1.25rem;
+        }
+
+        .gx-mini-card h3 {
+            margin: 0 0 6px;
+            font-size: 0.92rem;
+        }
+
+        .gx-mini-card p {
+            margin: 0;
+            color: var(--gx-muted);
+            font-size: 0.77rem;
+            line-height: 1.55;
+        }
+
+        .gx-floating-label {
+            position: absolute;
+            right: -18px;
+            bottom: 35px;
+            padding: 13px 16px;
+            border: 1px solid rgba(77, 229, 255, 0.25);
+            border-radius: 15px;
+            background: rgba(10, 22, 42, 0.96);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            color: #c9faff;
+            font-size: 0.78rem;
+            font-weight: 750;
+        }
+
+        .gx-section {
+            padding: 80px 0;
+        }
+
+        .gx-section-heading {
+            max-width: 720px;
+            margin: 0 auto 42px;
+            text-align: center;
+        }
+
+        .gx-section-kicker {
+            margin-bottom: 13px;
+            color: var(--gx-cyan);
+            font-size: 0.8rem;
+            font-weight: 850;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+        }
+
+        .gx-section-heading h2 {
+            margin: 0 0 16px;
+            font-size: clamp(2rem, 4vw, 3.25rem);
+            letter-spacing: -0.045em;
+            line-height: 1.12;
+        }
+
+        .gx-section-heading p {
+            margin: 0;
+            color: var(--gx-muted);
+            line-height: 1.8;
+        }
+
+        .gx-feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 19px;
+        }
+
+        .gx-feature-card {
+            min-width: 0;
+            padding: 25px;
+            border: 1px solid var(--gx-border);
+            border-radius: 20px;
+            background: var(--gx-panel);
+            transition:
+                transform 0.25s ease,
+                border-color 0.25s ease;
+        }
+
+        .gx-feature-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(77, 229, 255, 0.35);
+        }
+
+        .gx-feature-icon {
+            width: 51px;
+            height: 51px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 22px;
+            border: 1px solid rgba(167, 131, 255, 0.17);
+            border-radius: 16px;
+            background: linear-gradient(
+                135deg,
+                rgba(71, 118, 255, 0.18),
+                rgba(167, 131, 255, 0.13)
+            );
+            font-size: 1.45rem;
+        }
+
+        .gx-feature-card h3 {
+            margin: 0 0 11px;
+            font-size: 1.12rem;
+        }
+
+        .gx-feature-card p {
+            margin: 0 0 20px;
+            color: var(--gx-muted);
+            font-size: 0.91rem;
+            line-height: 1.8;
+        }
+
+        .gx-text-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gx-cyan);
+            font-weight: 750;
+            font-size: 0.87rem;
+        }
+
+        .gx-text-link:hover {
+            color: white;
+        }
+
+        .gx-learning-section {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gx-learning-panel {
+            display: grid;
+            grid-template-columns: 1fr 0.8fr;
+            align-items: center;
+            gap: 40px;
+            padding: clamp(28px, 5vw, 58px);
+            border: 1px solid rgba(77, 229, 255, 0.18);
+            border-radius: 27px;
+            background:
+                radial-gradient(
+                    circle at 90% 10%,
+                    rgba(71, 118, 255, 0.18),
+                    transparent 42%
+                ),
+                linear-gradient(
+                    135deg,
+                    rgba(18, 31, 61, 0.96),
+                    rgba(12, 19, 38, 0.97)
+                );
+        }
+
+        .gx-learning-panel h2 {
+            margin: 17px 0;
+            font-size: clamp(2rem, 4vw, 3.2rem);
+            line-height: 1.1;
+            letter-spacing: -0.045em;
+        }
+
+        .gx-learning-panel p {
+            color: var(--gx-muted);
+            line-height: 1.85;
+        }
+
+        .gx-learning-list {
+            display: grid;
+            gap: 12px;
+            margin: 23px 0 28px;
+            padding: 0;
+            list-style: none;
+        }
+
+        .gx-learning-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 11px;
+            color: #d9e2f6;
+            font-size: 0.91rem;
+        }
+
+        .gx-learning-illustration {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 13px;
+        }
+
+        .gx-learning-tile {
+            min-height: 135px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 18px;
+            border: 1px solid var(--gx-border);
+            border-radius: 17px;
+            background: rgba(255, 255, 255, 0.045);
+        }
+
+        .gx-learning-tile:nth-child(2),
+        .gx-learning-tile:nth-child(3) {
+            background: rgba(71, 118, 255, 0.09);
+        }
+
+        .gx-learning-tile span {
+            font-size: 1.8rem;
+        }
+
+        .gx-learning-tile strong {
+            font-size: 0.9rem;
+        }
+
+        .gx-learning-tile small {
+            margin-top: 5px;
+            color: var(--gx-muted);
+            font-size: 0.75rem;
+        }
+
+        .gx-tools-section {
+            background: rgba(255, 255, 255, 0.012);
+            border-block: 1px solid rgba(150, 170, 220, 0.07);
+        }
+
+        .gx-tool-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 15px;
+        }
+
+        .gx-tool-card {
+            min-width: 0;
+            padding: 20px;
+            border: 1px solid var(--gx-border);
+            border-radius: 18px;
+            background: rgba(17, 25, 48, 0.65);
+        }
+
+        .gx-tool-card .gx-tool-icon {
+            font-size: 1.7rem;
+        }
+
+        .gx-tool-card h3 {
+            margin: 16px 0 9px;
+            font-size: 1rem;
+        }
+
+        .gx-tool-card p {
+            margin: 0 0 16px;
+            color: var(--gx-muted);
+            font-size: 0.84rem;
+            line-height: 1.7;
+        }
+
+        .gx-tool-label {
+            display: inline-flex;
+            padding: 6px 9px;
+            border-radius: 999px;
+            background: rgba(71, 118, 255, 0.12);
+            color: #b7caff;
+            font-size: 0.68rem;
+            font-weight: 800;
+        }
+
+        .gx-creator-section {
+            padding: 85px 0;
+        }
+
+        .gx-creator-panel {
+            position: relative;
+            overflow: hidden;
+            padding: clamp(30px, 5vw, 62px);
+            border: 1px solid rgba(167, 131, 255, 0.23);
+            border-radius: 28px;
+            background:
+                radial-gradient(
+                    circle at 85% 45%,
+                    rgba(167, 131, 255, 0.18),
+                    transparent 32%
+                ),
+                linear-gradient(
+                    115deg,
+                    rgba(28, 22, 57, 0.9),
+                    rgba(12, 19, 38, 0.96)
+                );
+        }
+
+        .gx-creator-content {
+            position: relative;
+            z-index: 1;
+            max-width: 710px;
+        }
+
+        .gx-creator-panel h2 {
+            margin: 18px 0;
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            line-height: 1.06;
+            letter-spacing: -0.05em;
+        }
+
+        .gx-creator-panel p {
+            max-width: 620px;
+            color: var(--gx-muted);
+            line-height: 1.85;
+        }
+
+        .gx-creator-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 9px;
+            margin: 24px 0 28px;
+        }
+
+        .gx-creator-tags span {
+            padding: 9px 12px;
+            border: 1px solid var(--gx-border);
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.045);
+            color: #d9ddff;
+            font-size: 0.8rem;
+        }
+
+        .gx-community-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .gx-community-panel {
+            padding: 30px;
+            border: 1px solid var(--gx-border);
+            border-radius: 22px;
+            background: var(--gx-panel);
+        }
+
+        .gx-community-panel h3 {
+            margin: 17px 0 12px;
+            font-size: 1.35rem;
+        }
+
+        .gx-community-panel p {
+            margin: 0 0 23px;
+            color: var(--gx-muted);
+            line-height: 1.8;
+        }
+
+        .gx-community-panel .gx-feature-icon {
+            margin-bottom: 0;
+        }
+
+        .gx-ai-africa-panel {
+            margin-top: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+            padding: 25px 28px;
+            border: 1px solid rgba(77, 229, 255, 0.2);
+            border-radius: 20px;
+            background: linear-gradient(
+                100deg,
+                rgba(77, 229, 255, 0.055),
+                rgba(71, 118, 255, 0.1)
+            );
+        }
+
+        .gx-ai-africa-panel h3 {
+            margin: 0 0 8px;
+        }
+
+        .gx-ai-africa-panel p {
+            margin: 0;
+            color: var(--gx-muted);
+            line-height: 1.7;
+            font-size: 0.9rem;
+        }
+
+        .gx-credit-section {
+            padding-top: 20px;
+        }
+
+        .gx-credit-panel {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            gap: 30px;
+            padding: 35px;
+            border: 1px solid rgba(167, 131, 255, 0.2);
+            border-radius: 23px;
+            background: linear-gradient(
+                115deg,
+                rgba(167, 131, 255, 0.1),
+                rgba(71, 118, 255, 0.07)
+            );
+        }
+
+        .gx-credit-panel h2 {
+            margin: 0 0 12px;
+            font-size: clamp(1.7rem, 3vw, 2.5rem);
+        }
+
+        .gx-credit-panel p {
+            margin: 0;
+            max-width: 700px;
+            color: var(--gx-muted);
+            line-height: 1.8;
+        }
+
+        .gx-credit-note {
+            display: block;
+            margin-top: 12px;
+            color: #a8b5d1;
+            font-size: 0.77rem;
+            line-height: 1.6;
+        }
+
+        .gx-final-cta {
+            padding: 85px 0;
+            text-align: center;
+        }
+
+        .gx-final-cta h2 {
+            max-width: 760px;
+            margin: 0 auto 18px;
+            font-size: clamp(2.2rem, 5vw, 4rem);
+            letter-spacing: -0.05em;
+            line-height: 1.08;
+        }
+
+        .gx-final-cta p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--gx-muted);
+            line-height: 1.8;
+        }
+
+        .gx-final-cta .gx-hero-actions {
+            justify-content: center;
+        }
+
+        .gx-footer {
+            padding: 55px 0 25px;
+            border-top: 1px solid var(--gx-border);
+            background: rgba(4, 8, 18, 0.55);
+        }
+
+        .gx-footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr repeat(3, 1fr);
+            gap: 35px;
+            padding-bottom: 38px;
+        }
+
+        .gx-footer-brand p {
+            max-width: 310px;
+            margin: 17px 0;
+            color: var(--gx-muted);
+            font-size: 0.88rem;
+            line-height: 1.8;
+        }
+
+        .gx-footer-column h3 {
+            margin: 5px 0 17px;
+            font-size: 0.92rem;
+        }
+
+        .gx-footer-column a {
+            display: block;
+            width: fit-content;
+            margin: 12px 0;
+            color: var(--gx-muted);
+            font-size: 0.85rem;
+        }
+
+        .gx-footer-column a:hover {
+            color: var(--gx-cyan);
+        }
+
+        .gx-footer-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 14px;
+            padding-top: 22px;
+            border-top: 1px solid var(--gx-border);
+            color: var(--gx-muted);
+            font-size: 0.79rem;
+        }
+
+        .gx-footer-bottom a {
+            color: #c6d0e8;
+        }
+
+        .gx-accessible-skip {
+            position: absolute;
+            top: -100px;
+            left: 15px;
+            z-index: 3000;
+            padding: 12px 16px;
+            border-radius: 8px;
+            background: white;
+            color: black;
+        }
+
+        .gx-accessible-skip:focus {
+            top: 15px;
+        }
+
+        .gx-hidden {
+            display: none !important;
+        }
+
+        @media (max-width: 1050px) {
+            .gx-desktop-links {
+                gap: 14px;
+            }
+
+            .gx-desktop-links a {
+                font-size: 0.82rem;
+            }
+
+            .gx-hero-grid {
+                gap: 35px;
+            }
+
+            .gx-tool-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 850px) {
+            .gx-desktop-links,
+            .gx-desktop-actions {
+                display: none;
+            }
+
+            .gx-menu-button {
+                display: grid;
+            }
+
+            .gx-hero {
+                padding-top: 65px;
+            }
+
+            .gx-hero-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gx-hero-copy {
+                max-width: 680px;
+            }
+
+            .gx-visual {
+                width: min(100%, 620px);
+                margin: 10px auto 0;
+            }
+
+            .gx-feature-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .gx-learning-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .gx-learning-illustration {
+                max-width: 550px;
+            }
+
+            .gx-footer-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .gx-footer-brand {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .gx-container {
+                width: min(100% - 30px, 1180px);
+            }
+
+            .gx-announcement {
+                font-size: 0.76rem;
+                line-height: 1.6;
+            }
+
+            .gx-nav {
+                min-height: 68px;
+            }
+
+            .gx-brand {
+                font-size: 1.35rem;
+            }
+
+            .gx-brand-mark {
+                width: 38px;
+                height: 38px;
+            }
+
+            .gx-hero {
+                padding: 55px 0 50px;
+            }
+
+            .gx-hero h1 {
+                font-size: clamp(2.55rem, 12vw, 4rem);
+            }
+
+            .gx-hero-copy {
+                font-size: 0.98rem;
+            }
+
+            .gx-hero-actions {
+                display: grid;
+                grid-template-columns: 1fr;
+            }
+
+            .gx-hero-actions .gx-btn {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .gx-trust-line {
+                gap: 12px;
+            }
+
+            .gx-dashboard {
+                padding: 15px;
+                border-radius: 20px;
+            }
+
+            .gx-mini-card {
+                min-height: 125px;
+                padding: 13px;
+            }
+
+            .gx-mini-card h3 {
+                font-size: 0.85rem;
+            }
+
+            .gx-floating-label {
+                right: 8px;
+                bottom: -18px;
+                font-size: 0.7rem;
+            }
+
+            .gx-section {
+                padding: 60px 0;
+            }
+
+            .gx-feature-grid,
+            .gx-community-grid,
+            .gx-tool-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gx-feature-card {
+                padding: 22px;
+            }
+
+            .gx-learning-panel {
+                padding: 25px 19px;
+                border-radius: 21px;
+            }
+
+            .gx-learning-illustration {
+                gap: 10px;
+            }
+
+            .gx-learning-tile {
+                min-height: 115px;
+                padding: 13px;
+            }
+
+            .gx-creator-panel {
+                padding: 27px 20px;
+                border-radius: 22px;
+            }
+
+            .gx-community-panel {
+                padding: 23px;
+            }
+
+            .gx-ai-africa-panel {
+                align-items: flex-start;
+                flex-direction: column;
+                padding: 23px;
+            }
+
+            .gx-ai-africa-panel .gx-btn {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .gx-credit-panel {
+                grid-template-columns: 1fr;
+                padding: 25px 20px;
+            }
+
+            .gx-credit-panel .gx-btn {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .gx-footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 25px 18px;
+            }
+
+            .gx-footer-bottom {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+
+    <script src="app.js" defer></script>
 </head>
+
 <body>
-    
-    <table class="outter" width="879" align="center"> 
-	<tr valign="top">
-		<td class="menu">
-			<table class="menu"><tr><td>
-			
-			<div id="menu">
-			<a href="http://Melcomm366.com.ng" >Home</a>
-			<hr /> <b>Web Tutorials</b>
-			<a href="http://Melcomm366.com.ng" >First Website Guide</a>
-			<a href="http://Melcomm366.com.ng" >HTML Tutorial</a>
-			<a href="http://Melcomm366.com.ng" >CSS Tutorial</a>
-			<hr /><b>Scripting</b>
-			<a href="http://Melcomm366.com.ng/javascriptT/" >Javascript Tutorial</a>
-			<a href="http://Melcomm366.com.ng/phpT/" >PHP Tutorial</a>
-			<a href="http://Melcomm366.com.ng/perlT/" >PERL Tutorial</a>
-			<a href="http://Melcomm366.com.ng/ajaxTutorial/" >Ajax Tutorial</a>
-			<a href="http://Melcomm366.com.ng/aspTutorial/" >ASP Tutorial</a>
-			<a href="http://Melcomm366.com.ng/vbscriptTutorial/" >VBScript Tutorial</a>
-			
-			<hr /><b>Databases</b>
-			<a href="http://Melcomm366.com.ng/sqlTutorial/" >SQL Tutorial</a>
-			<a href="http://Melcomm366.com.ng/mysqlTutorial/" >MySQL Tutorial</a>
-			
-			<hr /><b>Flash</b>
-			<a href="http://Melcomm366.com.ng/flashTutorial/" >Flash Tutorial</a>
-			
-			<hr /><b>Miscellaneous</b>
-			<a href="http://Melcomm366.com.ng/xmlTutorial/" >XML Tutorial</a>
-			<a href="http://Melcomm366.com.ng/webhost/" >Web Host Guide</a>
-			<a href="http:/Melcomm366.com.ng/SEOTutorial">SEO Tutorial</a>
-			<!--<a href="http://www.tizag.com/quiz/" >Tizag Quizzes!</a>-->
-			<hr />
-			<b>Tools</b>
-			<a href="http://Melcomm366.com.ng/tools/counter.php" >PHP Counter</a>
-			<a href="http:/Melcomm366.com.ng/tools/countdown.php" >PHP Countdown</a>
-			
-			<hr />
-			<b>Reference</b>
-			<a href="http://Melcomm366.com.ng/books/" >Books</a>
-			<a href="http://Melcomm366.com.ng/htmlPractice.php" >HTML QuickViewer</a>
-			<a href="http://Melcomm366.com.ng/cssT/liveExampleCss/" >CSS Examples</a>
-			<a href="http:/Melcomm366.com.ng/resources/" >Links</a>
-			<hr />
-				
-			<a href="http://Melcomm366.com.ng/about/contact.php" >Contact Us</a>
-			<a href="http://Melcomm366.com.ng/about/linkus.php" >Link To Us</a> 
-			<a href="http://Melcomm366.com.ng/about/aboutUs.php" >About melcomm366</a>
-			
-			</div>
-			</td></tr></table>
-			<td width="539">
-				<table class="main" cellpadding="8" width="100%" >
-				
-				<tr><td class="mainIn">
-					<h1 style="color: brown;">Welcome to melcomm366</h1>
-	<p>melcomm366 is designed to teach beginner web programmers
-	how to use HTML and CSS.  We invite you to begin the tutorials right away.
-	learn coding just like gaming:</p>
-	<ul>
-		<li><a href="/beginnerT/"><b>A Beginner tutorial </b></a>- 
-			For those just starting to learn to make web pages.</li>
-		<li><a href="/htmlT/"><b>HTML Tutorial</b></a> - 
-			Begin your web designing with a solid background in HTML.</li>
-		<li><a href="/cssT/"><b>CSS Tutorial</b></a> - 
-			Check out the latest web design techniques available to you.</li>
-		<li><a href="/phpT/"><b>PHP Tutorial</b></a> - 
-			Understand what all the PHP hype is about with our tutorial.</li>
-		<li><a href="/webhost/"><b>Web Host Guide</b></a> - 
-		An overview of all the information you need to know about choosing and using
-		a web host.</li>
-		<li><a href="http://Melcomm366.com.ng"><b>CSS Reference</b></a> - 
-		CSS Quick-Reference sheet.  Each item of the reference also has an accompanying example.</li>
-		<li><a href="http://Melcomm366.com.ng"><b>HTML Reference</b></a> - 
-		HTML Tag Reference including attributes associated with each tag and accompanying examples.</li>
-		</ul>
-	
-	
-	<h2 style="color: brown;">Listening to the Community</h1>
-	<p><b>melcomm366 </b> will go out of its way to make these tutorials
-	the best on the net.  If you ever think a topic is not explained clearly or think
-	we should add a specific lesson, <a href="about/contact.php"> <em> please let us know</em></a>.
-	Chances are, you will find a better web site the next time you come back.</p><br/>
-		</td></tr>
-				</table>
-			</td>
-			<td width="200">
-				<table class="rightCol">
-					<tr><td>
-					<div class="rightMenu">
-					<b>Web Reference</b><br />
-					<a class="menu" href="http://Melcomm366.com.ng">HTML Reference</a>
-					<a class="menu" href="http://Melcomm366.com.ng">CSS Reference</a>
-					<a class="menu" href="http://Melcomm366.com.ng">CSS Examples</a>
-					<a class="menu" href="http://Melcomm366.com.ng">PHP Examples</a><hr />
-					<b>feedback</b><br />
-					<a class="menu" href="http://Melcomm366.com.ng">Link to melcomm366</a>
-					<a class="menu" href="http://Melcomm366.com.ng"> melcomm366 Store</a>
-					<a href="http://www.epearl.net/">Seattle Web Design</a>
-					<hr />
-					<a href='http://Melcomm366.com.ng'>GoNix app</a>
-					<img src="Screenshot_20240821-133411~2.jpg" width="220" height="200" alt="AI">
-					</div>
-					<hr />
-										
-										</table>
-					<div class="rightMenu">
-					<b>More Tutorials! </b><br />
-					<a class='menu' href='http://Melcomm366.com.ng'>Microsoft Office Tutorials</a>
-					<a class='menu' href='http://Melcomm366.com.ng'>Artist Tutorials</a>
-					<img src="server-capa.png" alt="server-capa">
-					</div>
-					</td></tr>
-				</table>
-			</td>
-		</tr>
-		<tr>
-		<td colspan="3">
-			<p align="center" class="copyright" style="color: rgb(1, 10, 7);">MELCOMM GLOBAL 2024| <a href="http://www.tizag.com/about/copy.php">Copyright</a> | <a href="http://www.melcomm366.com.ng/about/privacy.php">Privacy Policy</a> |  <a href="http://www.w3schools.com/about/advertise.php">Advertising Information</a></p>
-		</td></tr>
-	
-	</table>
-	
 
-    
-     <img src="drone.jpg"  width="1500" height="300" alt="drone">
+    <a class="gx-accessible-skip" href="#main-content">
+        Skip to main content
+    </a>
+
+    <!-- ANNOUNCEMENT -->
+    <div class="gx-announcement">
+        Your next digital opportunity starts here.
+        <a href="learning.html" data-route="learning">
+            Explore GoNix →
+        </a>
+    </div>
+
+    <!-- HEADER -->
+    <header class="gx-header">
+        <div class="gx-container">
+            <nav class="gx-nav" aria-label="Main navigation">
+
+                <a class="gx-brand" href="index.html" data-route="home"
+                   aria-label="GoNix homepage">
+                    <span class="gx-brand-mark">G</span>
+                    <span>GoNix</span>
+                </a>
+
+                <div class="gx-desktop-links">
+                    <a href="learning.html" data-route="learning">Learn</a>
+                    <a href="ai-tools.html" data-route="ai-tools">AI Tools</a>
+                    <a href="creator-studio.html" data-route="creator-studio">
+                        Create
+                    </a>
+                    <a href="community.html" data-route="community">
+                        Community
+                    </a>
+                    <a href="marketplace.html" data-route="marketplace">
+                        Marketplace
+                    </a>
+                </div>
+
+                <div class="gx-nav-actions">
+                    <div class="gx-desktop-actions">
+                        <a class="gx-btn gx-btn-secondary"
+                           href="login.html" data-route="login">
+                            Log in
+                        </a>
+
+                        <a class="gx-btn gx-btn-primary"
+                           href="signup.html" data-route="signup">
+                            Get started
+                        </a>
+                    </div>
+
+                    <button
+                        class="gx-menu-button"
+                        type="button"
+                        data-menu-toggle
+                        aria-label="Open navigation menu"
+                        aria-expanded="false"
+                        aria-controls="gonix-mobile-menu">
+                        ☰
+                    </button>
+                </div>
+            </nav>
+        </div>
+
+        <div
+            class="gx-mobile-menu"
+            id="gonix-mobile-menu"
+            data-mobile-menu>
+
+            <a href="index.html" data-route="home">Home</a>
+            <a href="learning.html" data-route="learning">Learning Hub</a>
+            <a href="ai-tools.html" data-route="ai-tools">AI Tools</a>
+            <a href="creator-studio.html" data-route="creator-studio">
+                Creator Studio
+            </a>
+            <a href="community.html" data-route="community">Community</a>
+            <a href="marketplace.html" data-route="marketplace">Marketplace</a>
+            <a href="gocredit.html" data-route="gocredit">GoCredit</a>
+            <a href="dashboard.html" data-route="dashboard">Dashboard</a>
+            <a href="login.html" data-route="login">Log in</a>
+            <a href="signup.html" data-route="signup">Create an account</a>
+        </div>
+    </header>
+
+    <main id="main-content">
+
+        <!-- HERO -->
+        <section class="gx-hero">
+            <div class="gx-container gx-hero-grid">
+
+                <div>
+                    <div class="gx-eyebrow">
+                        <span class="gx-status-dot"></span>
+                        YOUR DIGITAL GROWTH PLATFORM
+                    </div>
+
+                    <h1>
+                        Learn smarter.<br>
+                        <span class="gx-gradient-text">
+                            Create bigger.
+                        </span><br>
+                        Go further.
+                    </h1>
+
+                    <p class="gx-hero-copy">
+                        Discover AI tools, develop practical digital skills,
+                        build creative projects, and connect with people
+                        turning ideas into opportunities.
+                        Welcome to GoNix.
+                    </p>
+
+                    <div class="gx-hero-actions">
+                        <a class="gx-btn gx-btn-primary"
+                           href="signup.html" data-route="signup">
+                            Start exploring <span aria-hidden="true">→</span>
+                        </a>
+
+                        <a class="gx-btn gx-btn-secondary"
+                           href="learning.html" data-route="learning">
+                            Explore learning
+                        </a>
+                    </div>
+
+                    <div class="gx-trust-line">
+                        <span><span class="gx-check">✓</span> Learn at your pace</span>
+                        <span><span class="gx-check">✓</span> Explore creative tools</span>
+                        <span><span class="gx-check">✓</span> Build your portfolio</span>
+                    </div>
+                </div>
+
+                <div class="gx-visual" aria-label="Preview of GoNix features">
+                    <div class="gx-dashboard">
+
+                        <div class="gx-dash-top">
+                            <div>
+                                <div class="gx-dash-title">
+                                    Welcome to your digital workspace
+                                </div>
+                                <div class="gx-dash-caption">
+                                    Learn, build, and discover.
+                                </div>
+                            </div>
+
+                            <span class="gx-live-badge">GONIX</span>
+                        </div>
+
+                        <div class="gx-dash-grid">
+
+                            <a href="learning.html"
+                               data-route="learning"
+                               class="gx-mini-card">
+                                <div class="gx-mini-icon" aria-hidden="true">
+                                    📚
+                                </div>
+                                <h3>Learning Hub</h3>
+                                <p>Build knowledge and practical skills.</p>
+                            </a>
+
+                            <a href="ai-tools.html"
+                               data-route="ai-tools"
+                               class="gx-mini-card">
+                                <div class="gx-mini-icon" aria-hidden="true">
+                                    ✨
+                                </div>
+                                <h3>AI Tools</h3>
+                                <p>Explore tools for everyday creativity.</p>
+                            </a>
+
+                            <a href="creator-studio.html"
+                               data-route="creator-studio"
+                               class="gx-mini-card">
+                                <div class="gx-mini-icon" aria-hidden="true">
+                                    🎨
+                                </div>
+                                <h3>Creator Studio</h3>
+                                <p>Organize and develop your ideas.</p>
+                            </a>
+
+                            <a href="community.html"
+                               data-route="community"
+                               class="gx-mini-card">
+                                <div class="gx-mini-icon" aria-hidden="true">
+                                    🌍
+                                </div>
+                                <h3>Community</h3>
+                                <p>Share ideas and discover creators.</p>
+                            </a>
+
+                        </div>
+                    </div>
+
+                    <div class="gx-floating-label">
+                        ✦ One space for your digital journey
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CORE FEATURES -->
+        <section class="gx-section" id="features">
+            <div class="gx-container">
+
+                <div class="gx-section-heading">
+                    <div class="gx-section-kicker">Explore GoNix</div>
+                    <h2>
+                        Everything you need to
+                        <span class="gx-gradient-text">move forward.</span>
+                    </h2>
+                    <p>
+                        Discover connected digital experiences designed to
+                        help you learn, experiment, create, and connect.
+                    </p>
+                </div>
+
+                <div class="gx-feature-grid">
+
+                    <article class="gx-feature-card">
+                        <div class="gx-feature-icon" aria-hidden="true">🧠</div>
+                        <h3>AI Tools</h3>
+                        <p>
+                            Explore AI-powered services for writing,
+                            research, design, productivity, and other
+                            creative tasks.
+                        </p>
+                        <a class="gx-text-link"
+                           href="ai-tools.html" data-route="ai-tools">
+                            Discover AI tools →
+                        </a>
+                    </article>
+
+                    <article class="gx-feature-card">
+                        <div class="gx-feature-icon" aria-hidden="true">🎓</div>
+                        <h3>Digital Learning</h3>
+                        <p>
+                            Develop your knowledge of AI, technology,
+                            and digital skills through learning resources.
+                        </p>
+                        <a class="gx-text-link"
+                           href="learning.html" data-route="learning">
+                            Start learning →
+                        </a>
+                    </article>
+
+                    <article class="gx-feature-card">
+                        <div class="gx-feature-icon" aria-hidden="true">🛠️</div>
+                        <h3>Creator Studio</h3>
+                        <p>
+                            Keep your creative projects organized and
+                            explore ways to turn concepts into digital work.
+                        </p>
+                        <a class="gx-text-link"
+                           href="creator-studio.html"
+                           data-route="creator-studio">
+                            Open Creator Studio →
+                        </a>
+                    </article>
+
+                    <article class="gx-feature-card">
+                        <div class="gx-feature-icon" aria-hidden="true">🤝</div>
+                        <h3>Creator Community</h3>
+                        <p>
+                            Share updates, showcase ideas, and discover
+                            what other members are working on.
+                        </p>
+                        <a class="gx-text-link"
+                           href="community.html" data-route="community">
+                            Visit community →
+                        </a>
+                    </article>
+
+                    <article class="gx-feature-card">
+                        <div class="gx-feature-icon" aria-hidden="true">🛍️</div>
+                        <h3>Digital Marketplace</h3>
+                        <p>
+                            Explore a dedicated space for digital products,
+                            services, and potential creator opportunities.
+                        </p>
+                        <a class="gx-text-link"
+                           href="marketplace.html" data-route="marketplace">
+                            Explore marketplace →
+                        </a>
+                    </article>
+
+                    <article class="gx-feature-card">
+                        <div class="gx-feature-icon" aria-hidden="true">👤</div>
+                        <h3>Your Digital Profile</h3>
+                        <p>
+                            Organize your profile, highlight your interests,
+                            and present your creative projects.
+                        </p>
+                        <a class="gx-text-link"
+                           href="profile.html" data-route="profile">
+                            View profile →
+                        </a>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- LEARNING HUB -->
+        <section class="gx-section gx-learning-section" id="learning">
+            <div class="gx-container">
+
+                <div class="gx-learning-panel">
+
+                    <div>
+                        <div class="gx-section-kicker">Build your knowledge</div>
+
+                        <h2>
+                            Your next skill could
+                            <span class="gx-gradient-text">change everything.</span>
+                        </h2>
+
+                        <p>
+                            Start exploring digital technology, artificial
+                            intelligence, and creative problem-solving.
+                            Learn step by step and apply what you discover
+                            to your own projects.
+                        </p>
+
+                        <ul class="gx-learning-list">
+                            <li>
+                                <span class="gx-check">✓</span>
+                                Explore technology and AI learning resources.
+                            </li>
+                            <li>
+                                <span class="gx-check">✓</span>
+                                Discover ideas you can apply to real projects.
+                            </li>
+                            <li>
+                                <span class="gx-check">✓</span>
+                                Build your learning journey at your own pace.
+                            </li>
+                        </ul>
+
+                        <a class="gx-btn gx-btn-primary"
+                           href="learning.html" data-route="learning">
+                            Visit GoNix Learning Hub →
+                        </a>
+                    </div>
+
+                    <div class="gx-learning-illustration">
+                        <div class="gx-learning-tile">
+                            <span aria-hidden="true">🤖</span>
+                            <div>
+                                <strong>Artificial Intelligence</strong>
+                                <small>Understand modern AI</small>
+                            </div>
+                        </div>
+
+                        <div class="gx-learning-tile">
+                            <span aria-hidden="true">💻</span>
+                            <div>
+                                <strong>Development</strong>
+                                <small>Explore digital building</small>
+                            </div>
+                        </div>
+
+                        <div class="gx-learning-tile">
+                            <span aria-hidden="true">🔐</span>
+                            <div>
+                                <strong>Cybersecurity</strong>
+                                <small>Learn about digital safety</small>
+                            </div>
+                        </div>
+
+                        <div class="gx-learning-tile">
+                            <span aria-hidden="true">🚀</span>
+                            <div>
+                                <strong>Innovation</strong>
+                                <small>Turn ideas into projects</small>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- AI TOOLS -->
+        <section class="gx-section gx-tools-section" id="ai-tools">
+            <div class="gx-container">
+
+                <div class="gx-section-heading">
+                    <div class="gx-section-kicker">Explore AI</div>
+                    <h2>
+                        Discover tools that
+                        <span class="gx-gradient-text">expand your ideas.</span>
+                    </h2>
+                    <p>
+                        Find AI services that may help with different
+                        creative and professional tasks. Availability,
+                        pricing, and access depend on each provider.
+                    </p>
+                </div>
+
+                <div class="gx-tool-grid" data-ai-tools>
+
+                    <article class="gx-tool-card">
+                        <div class="gx-tool-icon" aria-hidden="true">✍️</div>
+                        <h3>Writing & Research</h3>
+                        <p>
+                            Explore tools for drafting, brainstorming,
+                            summarizing, and researching ideas.
+                        </p>
+                        <span class="gx-tool-label">PRODUCTIVITY</span>
+                    </article>
+
+                    <article class="gx-tool-card">
+                        <div class="gx-tool-icon" aria-hidden="true">🖼️</div>
+                        <h3>Image & Design</h3>
+                        <p>
+                            Discover creative services for visual concepts,
+                            artwork, and design exploration.
+                        </p>
+                        <span class="gx-tool-label">CREATIVITY</span>
+                    </article>
+
+                    <article class="gx-tool-card">
+                        <div class="gx-tool-icon" aria-hidden="true">🎬</div>
+                        <h3>Video & Audio</h3>
+                        <p>
+                            Explore tools for video production,
+                            narration, audio, and multimedia projects.
+                        </p>
+                        <span class="gx-tool-label">MEDIA</span>
+                    </article>
+
+                    <article class="gx-tool-card">
+                        <div class="gx-tool-icon" aria-hidden="true">👨‍💻</div>
+                        <h3>Code & Development</h3>
+                        <p>
+                            Find resources that support programming,
+                            prototyping, and software development.
+                        </p>
+                        <span class="gx-tool-label">DEVELOPMENT</span>
+                    </article>
+
+                </div>
+
+                <div style="text-align:center; margin-top:32px;">
+                    <a class="gx-btn gx-btn-secondary"
+                       href="ai-tools.html" data-route="ai-tools">
+                        Explore the AI tools directory →
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CREATOR STUDIO -->
+        <section class="gx-creator-section" id="creator-studio">
+            <div class="gx-container">
+
+                <div class="gx-creator-panel">
+                    <div class="gx-creator-content">
+
+                        <div class="gx-section-kicker">
+                            Made for creative minds
+                        </div>
+
+                        <h2>
+                            Your imagination.
+                            Your projects.
+                            <span class="gx-gradient-text">
+                                Your next move.
+                            </span>
+                        </h2>
+
+                        <p>
+                            Use GoNix Creator Studio to organize your ideas
+                            and creative projects. Whether you are exploring
+                            websites, apps, videos, music, graphics, or games,
+                            give your next idea a place to grow.
+                        </p>
+
+                        <div class="gx-creator-tags">
+                            <span>🌐 Websites</span>
+                            <span>📱 Apps</span>
+                            <span>🎬 Video</span>
+                            <span>🎵 Music</span>
+                            <span>🎨 Design</span>
+                            <span>🎮 Games</span>
+                        </div>
+
+                        <a class="gx-btn gx-btn-primary"
+                           href="creator-studio.html"
+                           data-route="creator-studio">
+                            Enter Creator Studio →
+                        </a>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- COMMUNITY AND MARKETPLACE -->
+        <section class="gx-section" id="community">
+            <div class="gx-container">
+
+                <div class="gx-section-heading">
+                    <div class="gx-section-kicker">Connect and discover</div>
+                    <h2>
+                        Ideas grow when
+                        <span class="gx-gradient-text">people connect.</span>
+                    </h2>
+                    <p>
+                        Explore spaces for sharing your work and discovering
+                        digital products, services, and creative possibilities.
+                    </p>
+                </div>
+
+                <div class="gx-community-grid">
+
+                    <article class="gx-community-panel">
+                        <div class="gx-feature-icon" aria-hidden="true">
+                            🌍
+                        </div>
+
+                        <h3>Find your community</h3>
+
+                        <p>
+                            Share ideas, publish updates, and discover
+                            projects from other creators. Build your presence
+                            as you develop your skills and interests.
+                        </p>
+
+                        <a class="gx-btn gx-btn-secondary"
+                           href="community.html" data-route="community">
+                            Explore community →
+                        </a>
+                    </article>
+
+                    <article class="gx-community-panel">
+                        <div class="gx-feature-icon" aria-hidden="true">
+                            🛒
+                        </div>
+
+                        <h3>Explore the marketplace</h3>
+
+                        <p>
+                            Discover the marketplace experience and explore
+                            how digital products, services, and creative
+                            offerings could connect with an audience.
+                        </p>
+
+                        <a class="gx-btn gx-btn-secondary"
+                           href="marketplace.html" data-route="marketplace">
+                            Visit marketplace →
+                        </a>
+                    </article>
+
+                </div>
+
+                <!-- AI AFRICA CROSS-APP LINK -->
+                <div class="gx-ai-africa-panel">
+
+                    <div>
+                        <h3>Meet AI Africa Learning Hub</h3>
+                        <p>
+                            Have a separate destination for AI education.
+                            Open AI Africa to explore its own learning
+                            experience, courses, and educational resources.
+                        </p>
+                    </div>
+
+                    <!--
+                      IMPORTANT:
+                      Replace the URL below with the actual deployed
+                      AI Africa Learning Hub URL before publishing.
+
+                      Do not use the GoNix URL here: these are separate apps.
+                    -->
+                    <a
+                        class="gx-btn gx-btn-primary"
+                        id="ai-africa-link"
+                        href="https://REPLACE-WITH-YOUR-AI-AFRICA-DEPLOYMENT-URL"
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        Visit AI Africa Hub ↗
+                    </a>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- GOCREDIT -->
+        <section class="gx-section gx-credit-section" id="gocredit">
+            <div class="gx-container">
+
+                <div class="gx-credit-panel">
+
+                    <div>
+                        <div class="gx-section-kicker">GoNix ecosystem</div>
+
+                        <h2>Discover GoCredit</h2>
+
+                        <p>
+                            Explore the GoCredit section of GoNix to learn
+                            about its available features and intended role
+                            within the platform.
+                        </p>
+
+                        <span class="gx-credit-note">
+                            Any credits, rewards, balances, or financial
+                            features shown in the current frontend should be
+                            treated as demonstrations unless backed by a
+                            verified, operational service.
+                        </span>
+                    </div>
+
+                    <a class="gx-btn gx-btn-primary"
+                       href="gocredit.html" data-route="gocredit">
+                        Explore GoCredit →
+                    </a>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- FINAL CTA -->
+        <section class="gx-final-cta">
+            <div class="gx-container">
+
+                <div class="gx-section-kicker">Your journey starts here</div>
+
+                <h2>
+                    Turn your curiosity into
+                    <span class="gx-gradient-text">possibility.</span>
+                </h2>
+
+                <p>
+                    Explore new ideas, learn useful skills, and take the next
+                    step in your digital journey with GoNix.
+                </p>
+
+                <div class="gx-hero-actions">
+                    <a class="gx-btn gx-btn-primary"
+                       href="signup.html" data-route="signup">
+                        Get started with GoNix →
+                    </a>
+
+                    <a class="gx-btn gx-btn-secondary"
+                       href="learning.html" data-route="learning">
+                        Browse learning resources
+                    </a>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="gx-footer">
+        <div class="gx-container">
+
+            <div class="gx-footer-grid">
+
+                <div class="gx-footer-brand">
+                    <a class="gx-brand"
+                       href="index.html" data-route="home">
+                        <span class="gx-brand-mark">G</span>
+                        <span>GoNix</span>
+                    </a>
+
+                    <p>
+                        Learn. Create. Connect. Earn.
+                        A digital platform built around learning,
+                        creativity, and discovering new possibilities.
+                    </p>
+
+                    <a class="gx-text-link"
+                       href="learning.html" data-route="learning">
+                        Start exploring →
+                    </a>
+                </div>
+
+                <div class="gx-footer-column">
+                    <h3>Explore</h3>
+                    <a href="learning.html" data-route="learning">
+                        Learning Hub
+                    </a>
+                    <a href="ai-tools.html" data-route="ai-tools">
+                        AI Tools
+                    </a>
+                    <a href="creator-studio.html"
+                       data-route="creator-studio">
+                        Creator Studio
+                    </a>
+                    <a href="community.html" data-route="community">
+                        Community
+                    </a>
+                </div>
+
+                <div class="gx-footer-column">
+                    <h3>Platform</h3>
+                    <a href="marketplace.html" data-route="marketplace">
+                        Marketplace
+                    </a>
+                    <a href="gocredit.html" data-route="gocredit">
+                        GoCredit
+                    </a>
+                    <a href="dashboard.html" data-route="dashboard">
+                        Dashboard
+                    </a>
+                    <a href="profile.html" data-route="profile">
+                        My Profile
+                    </a>
+                </div>
+
+                <div class="gx-footer-column">
+                    <h3>Account & Legal</h3>
+                    <a href="login.html" data-route="login">
+                        Log in
+                    </a>
+                    <a href="signup.html" data-route="signup">
+                        Create account
+                    </a>
+                    <a href="privacy.html" data-route="privacy">
+                        Privacy Policy
+                    </a>
+                    <a href="terms.html" data-route="terms">
+                        Terms of Use
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="gx-footer-bottom">
+                <span>
+                    © <span data-current-year></span> GoNix.
+                    All rights reserved.
+                </span>
+
+                <span>
+                    Learn. Create. Connect. Earn.
+                </span>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- HOMEPAGE-SPECIFIC INTERACTIONS -->
+    <script>
+        (() => {
+            "use strict";
+
+            const menuButton = document.querySelector("[data-menu-toggle]");
+            const mobileMenu = document.querySelector("[data-mobile-menu]");
+
+            if (menuButton && mobileMenu) {
+                menuButton.addEventListener("click", () => {
+                    const isOpen =
+                        mobileMenu.classList.toggle("is-open");
+
+                    menuButton.setAttribute(
+                        "aria-expanded",
+                        String(isOpen)
+                    );
+
+                    menuButton.setAttribute(
+                        "aria-label",
+                        isOpen
+                            ? "Close navigation menu"
+                            : "Open navigation menu"
+                    );
+
+                    menuButton.textContent = isOpen ? "×" : "☰";
+                });
+
+                mobileMenu.querySelectorAll("a").forEach((link) => {
+                    link.addEventListener("click", () => {
+                        mobileMenu.classList.remove("is-open");
+
+                        menuButton.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                        menuButton.setAttribute(
+                            "aria-label",
+                            "Open navigation menu"
+                        );
+
+                        menuButton.textContent = "☰";
+                    });
+                });
+
+                document.addEventListener("keydown", (event) => {
+                    if (event.key === "Escape") {
+                        mobileMenu.classList.remove("is-open");
+
+                        menuButton.setAttribute(
+                            "aria-expanded",
+                            "false"
+                        );
+
+                        menuButton.setAttribute(
+                            "aria-label",
+                            "Open navigation menu"
+                        );
+
+                        menuButton.textContent = "☰";
+                    }
+                });
+            }
+
+            // Keep the footer year current.
+            document.querySelectorAll("[data-current-year]").forEach((el) => {
+                el.textContent = new Date().getFullYear();
+            });
+
+            // Prevent the external AI Africa link from being followed
+            // until its actual deployment URL has been configured.
+            const aiAfricaLink =
+                document.getElementById("ai-africa-link");
+
+            if (aiAfricaLink) {
+                const href = aiAfricaLink.getAttribute("href") || "";
+
+                if (href.includes("REPLACE-WITH-YOUR-AI-AFRICA-DEPLOYMENT-URL")) {
+                    aiAfricaLink.addEventListener("click", (event) => {
+                        event.preventDefault();
+
+                        alert(
+                            "The AI Africa Learning Hub link needs its actual deployed URL. " +
+                            "Update the href on the ai-africa-link element in index.html."
+                        );
+                    });
+                }
+            }
+        })();
+    </script>
+
 </body>
-
 </html>
