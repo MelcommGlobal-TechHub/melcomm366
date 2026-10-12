@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Learning Progress | AI Africa</title>
+    <meta name="description" content="Track your actual tutorial progress, achievements and AI skills on AI Africa.">
+
+    <style>
+        :root {
+            --primary: #087f5b;
+            --primary-dark: #056344;
+            --primary-light: #e7f7ef;
+            --secondary: #0f172a;
+            --background: #f5f7fb;
+            --surface: #fff;
+            --text: #172033;
+            --muted: #718096;
+            --border: #e6eaf0;
+            --success: #16a34a;
+            --danger: #dc2626;
+            --radius: 16px;
+            --shadow: 0 5px 24px rgba(15, 23, 42, .05);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: var(--background);
+            color: var(--text);
+            font: 15px/1.6 Inter, -apple-system, BlinkMacSystemFont,
+                "Segoe UI", Roboto, Arial, sans-serif;
+        }
+
+        button, input { font: inherit; }
+        button, a { -webkit-tap-highlight-color: transparent; }
+        button { cursor: pointer; }
+        a { color: inherit; text-decoration: none; }
+        [hidden] { display: none !important; }
+
+        button:focus-visible, a:focus-visible {
+            outline: 3px solid rgba(8, 127, 91, .3);
+            outline-offset: 3px;
+        }
+
+        .app-shell { display: flex; min-height: 100vh; }
+
+        /* SIDEBAR */
+
+        .sidebar {
+            position: fixed;
+            inset: 0 auto 0 0;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            width: 255px;
+            padding: 26px 18px;
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            overflow-y: auto;
+            transition: transform .18s ease;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 0 9px;
+            margin-bottom: 38px;
+        }
+
+        .brand-mark {
+            display: grid;
+            width: 43px;
+            height: 43px;
+            flex-shrink: 0;
+            place-items: center;
+            border-radius: 13px;
+            background: var(--primary);
+            color: #fff;
+            font-size: 20px;
+            font-weight: 900;
+        }
+
+        .brand-name {
+            margin: 0;
+            color: var(--secondary);
+            font-size: 19px;
+            font-weight: 800;
+            letter-spacing: -.6px;
+        }
+
+        .brand-name span { color: var(--primary); }
+
+        .sidebar-label {
+            margin: 0 10px 12px;
+            color: #9aa4b2;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .nav-list {
+            display: grid;
+            gap: 6px;
+            padding: 0;
+            margin: 0 0 28px;
+            list-style: none;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-height: 46px;
+            padding: 11px 13px;
+            border-radius: 11px;
+            color: #647084;
+            font-weight: 600;
+            transition: background-color .15s, color .15s;
+        }
+
+        .nav-link:hover { background: #f3f7f5; color: var(--primary); }
+        .nav-link.active { background: var(--primary-light); color: var(--primary-dark); }
+
+        .nav-icon {
+            display: inline-grid;
+            width: 23px;
+            flex-shrink: 0;
+            place-items: center;
+            font-size: 19px;
+        }
+
+        .sidebar-bottom { margin-top: auto; padding-top: 20px; }
+
+        .help-card {
+            padding: 17px;
+            border: 1px solid #d8eee3;
+            border-radius: 14px;
+            background: #f2fbf6;
+        }
+
+        .help-card h3 { margin: 0 0 7px; font-size: 14px; }
+        .help-card p { margin: 0 0 13px; color: var(--muted); font-size: 12px; }
+        .help-link { color: var(--primary-dark); font-size: 12px; font-weight: 800; }
+
+        /* MAIN AREA */
+
+        .main-area {
+            width: calc(100% - 255px);
+            min-width: 0;
+            margin-left: 255px;
+        }
+
+        .topbar {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 76px;
+            padding: 14px 34px;
+            background: rgba(255, 255, 255, .97);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .topbar-left { display: flex; align-items: center; gap: 14px; min-width: 0; }
+
+        .mobile-menu-button {
+            display: none;
+            width: 40px;
+            height: 40px;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: #fff;
+            font-size: 20px;
+        }
+
+        .breadcrumb { color: var(--muted); font-size: 13px; }
+        .breadcrumb strong { color: var(--text); }
+        .topbar-right { display: flex; align-items: center; gap: 15px; }
+
+        .notification-button {
+            display: grid;
+            width: 40px;
+            height: 40px;
+            place-items: center;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            background: #fff;
+            font-size: 19px;
+        }
+
+        .user-area { position: relative; }
+
+        .user-button {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 4px 7px;
+            border: 0;
+            border-radius: 12px;
+            background: transparent;
+            text-align: left;
+        }
+
+        .user-button:hover { background: #f4f7f8; }
+
+        .avatar {
+            position: relative;
+            display: grid;
+            width: 42px;
+            height: 42px;
+            flex-shrink: 0;
+            place-items: center;
+            border-radius: 50%;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .online-dot {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            width: 11px;
+            height: 11px;
+            border: 2px solid white;
+            border-radius: 50%;
+            background: #22c55e;
+        }
+
+        .user-info { display: grid; max-width: 150px; }
+        .user-info strong, .user-info span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .user-info strong { font-size: 13px; }
+        .user-info span { color: var(--muted); font-size: 11px; }
+        .user-chevron { color: var(--muted); font-size: 12px; }
+
+        .profile-dropdown {
+            position: absolute;
+            top: calc(100% + 12px);
+            right: 0;
+            z-index: 200;
+            width: 235px;
+            padding: 8px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: #fff;
+            box-shadow: 0 16px 40px rgba(15, 23, 42, .12);
+        }
+
+        .dropdown-user { padding: 11px; border-bottom: 1px solid var(--border); margin-bottom: 6px; }
+        .dropdown-user strong, .dropdown-user span { display: block; overflow-wrap: anywhere; }
+        .dropdown-user strong { font-size: 13px; }
+        .dropdown-user span { color: var(--muted); font-size: 11px; }
+
+        .dropdown-action {
+            display: block;
+            width: 100%;
+            padding: 11px;
+            border: 0;
+            border-radius: 8px;
+            background: transparent;
+            color: var(--text);
+            text-align: left;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .dropdown-action:hover { background: #f4f7f8; }
+        .dropdown-action.danger { color: var(--danger); }
+
+        /* CONTENT */
+
+        .content { width: 100%; max-width: 1500px; padding: 34px; margin: 0 auto; }
+
+        .welcome-row {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 28px;
+        }
+
+        .eyebrow {
+            margin: 0 0 6px;
+            color: var(--primary);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .page-title {
+            margin: 0;
+            font-size: clamp(25px, 3vw, 34px);
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.25;
+        }
+
+        .welcome-description { max-width: 600px; margin: 10px 0 0; color: var(--muted); font-size: 14px; }
+
+        .date-label {
+            flex-shrink: 0;
+            padding: 9px 13px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            background: #fff;
+            color: #5e687a;
+            font-size: 12px;
+        }
+
+        /* HERO */
+
+        .hero-card {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            min-height: 230px;
+            padding: 32px;
+            overflow: hidden;
+            border-radius: 20px;
+            background: linear-gradient(115deg, #063e31, #087f5b 72%, #159a6f);
+            color: #fff;
+            box-shadow: var(--shadow);
+        }
+
+        .hero-card::after {
+            position: absolute;
+            top: -110px;
+            right: 12%;
+            width: 300px;
+            height: 300px;
+            border: 1px solid rgba(255, 255, 255, .14);
+            border-radius: 50%;
+            content: "";
+            pointer-events: none;
+        }
+
+        .hero-copy { position: relative; z-index: 1; max-width: 570px; }
+
+        .hero-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            margin-bottom: 12px;
+            border: 1px solid rgba(255, 255, 255, .28);
+            border-radius: 50px;
+            background: rgba(255, 255, 255, .1);
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .hero-card h2 { margin: 0 0 10px; font-size: clamp(22px, 3vw, 30px); line-height: 1.25; }
+        .hero-card p { max-width: 470px; margin: 0 0 19px; color: rgba(255,255,255,.83); font-size: 13px; }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            min-height: 42px;
+            padding: 11px 17px;
+            border: 1px solid transparent;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 800;
+            text-align: center;
+        }
+
+        .button-primary { background: var(--primary); color: #fff; }
+        .button-primary:hover { background: var(--primary-dark); }
+        .hero-card .button-primary { background: #fff; color: var(--primary-dark); }
+        .hero-card .button-primary:hover { background: #eaf7ef; }
+
+        .hero-art {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            width: 145px;
+            height: 145px;
+            flex-shrink: 0;
+            place-items: center;
+            border: 1px solid rgba(255, 255, 255, .2);
+            border-radius: 28px;
+            background: rgba(255, 255, 255, .1);
+            font-size: 72px;
+            transform: rotate(3deg);
+        }
+
+        /* STATS */
+
+        .stats-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 17px; margin: 25px 0 32px; }
+        .stat-card { min-width: 0; padding: 20px; border: 1px solid var(--border); border-radius: var(--radius); background: #fff; box-shadow: var(--shadow); }
+        .stat-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 16px; }
+        .stat-label { color: var(--muted); font-size: 12px; font-weight: 600; }
+        .stat-icon { display: grid; width: 38px; height: 38px; flex-shrink: 0; place-items: center; border-radius: 11px; background: var(--primary-light); font-size: 18px; }
+        .stat-value { display: block; margin-bottom: 5px; font-size: 28px; font-weight: 800; letter-spacing: -.8px; line-height: 1.2; }
+        .stat-note { color: var(--muted); font-size: 11px; }
+
+        /* SECTION HEADERS */
+
+        .section-heading { display: flex; align-items: center; justify-content: space-between; gap: 15px; margin-bottom: 17px; }
+        .section-heading h2 { margin: 0; font-size: 19px; font-weight: 800; letter-spacing: -.4px; }
+        .section-heading p { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
+        .text-link { flex-shrink: 0; color: var(--primary); font-size: 12px; font-weight: 800; }
+
+        /* TUTORIAL CARDS */
+
+        .courses-section { margin-bottom: 35px; }
+        .courses-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 18px; }
+
+        .course-card {
+            min-width: 0;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            background: #fff;
+            box-shadow: var(--shadow);
+        }
+
+        .course-cover {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 125px;
+            padding: 22px;
+            background: linear-gradient(135deg, #d8f4e5, #effaf3);
+        }
+
+        .course-cover.ai { background: linear-gradient(135deg, #dbeafe, #eef4ff); }
+        .course-cover.code { background: linear-gradient(135deg, #fce7d7, #fff4e9); }
+        .course-symbol { font-size: 48px; line-height: 1; }
+
+        .course-category {
+            padding: 5px 9px;
+            border: 1px solid rgba(23,32,51,.08);
+            border-radius: 50px;
+            background: rgba(255,255,255,.8);
+            color: #435164;
+            font-size: 10px;
+            font-weight: 800;
+        }
+
+        .course-body { padding: 19px; }
+        .course-body h3 { margin: 0 0 8px; font-size: 15px; line-height: 1.45; }
+        .course-description { min-height: 40px; margin: 0 0 17px; color: var(--muted); font-size: 12px; }
+
+        .course-progress-heading { display: flex; justify-content: space-between; gap: 10px; margin-bottom: 8px; font-size: 11px; }
+        .course-progress-heading span:first-child { color: var(--muted); }
+        .course-progress-heading strong { color: var(--primary-dark); }
+
+        .progress-track { width: 100%; height: 7px; overflow: hidden; border-radius: 50px; background: #edf0f4; }
+        .progress-fill { height: 100%; border-radius: inherit; background: var(--primary); transition: width .2s ease; }
+
+        .course-footer { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 17px; }
+        .lesson-count { color: var(--muted); font-size: 10px; }
+
+        .course-action {
+            padding: 8px 11px;
+            border: 0;
+            border-radius: 8px;
+            background: var(--primary-light);
+            color: var(--primary-dark);
+            font-size: 11px;
+            font-weight: 800;
+        }
+
+        .course-action:hover { background: #d4f0df; }
+
+        /* ACTIVITY AND ACHIEVEMENTS */
+
+        .lower-grid { display: grid; grid-template-columns: minmax(0,1.4fr) minmax(260px,.9fr); gap: 20px; align-items: start; }
+        .panel { min-width: 0; padding: 22px; border: 1px solid var(--border); border-radius: var(--radius); background: #fff; box-shadow: var(--shadow); }
+        .panel-heading { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 20px; }
+        .panel-heading h2 { margin: 0; font-size: 17px; }
+        .panel-heading span { color: var(--muted); font-size: 11px; }
+        .activity-list { display: grid; gap: 19px; }
+
+        .activity-item { display: flex; align-items: flex-start; gap: 13px; }
+        .activity-icon { display: grid; width: 40px; height: 40px; flex-shrink: 0; place-items: center; border-radius: 12px; background: #eef7f2; font-size: 18px; }
+        .activity-text { flex: 1; min-width: 0; }
+        .activity-text strong { display: block; margin-bottom: 3px; font-size: 12px; }
+        .activity-text p { margin: 0; color: var(--muted); font-size: 11px; }
+        .activity-time { flex-shrink: 0; color: #9aa4b2; font-size: 10px; }
+        .empty-state { padding: 22px 10px; color: var(--muted); text-align: center; font-size: 12px; }
+
+        .achievement-list { display: grid; gap: 13px; }
+
+        .achievement {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+        }
+
+        .achievement-icon { display: grid; width: 42px; height: 42px; flex-shrink: 0; place-items: center; border-radius: 12px; background: #fff6dc; font-size: 21px; }
+        .achievement.locked .achievement-icon { background: #f0f2f5; filter: grayscale(1); }
+        .achievement-copy { flex: 1; min-width: 0; }
+        .achievement-copy strong { display: block; font-size: 12px; }
+        .achievement-copy span { display: block; margin-top: 2px; color: var(--muted); font-size: 10px; }
+        .achievement-status { flex-shrink: 0; color: var(--success); font-size: 10px; font-weight: 800; }
+        .achievement.locked .achievement-status { color: #9aa4b2; }
+
+        /* FOOTER AND NOTICES */
+
+        .footer { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 28px 0 8px; margin-top: 20px; color: var(--muted); font-size: 11px; }
+        .footer-links { display: flex; flex-wrap: wrap; gap: 16px; }
+        .footer-links a:hover { color: var(--primary); }
+
+        .notice { margin-bottom: 22px; padding: 13px 16px; border: 1px solid #ccebd8; border-radius: 12px; background: #f0fbf4; color: #17663e; font-size: 12px; }
+        .notice.error { border-color: #fecaca; background: #fef2f2; color: #991b1b; }
+
+        .sidebar-overlay { display: none; }
+
+        @media (max-width: 1200px) {
+            .content { padding: 27px; }
+            .topbar { padding-right: 27px; padding-left: 27px; }
+            .stats-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+            .courses-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
+        }
+
+        @media (max-width: 850px) {
+            .sidebar { transform: translateX(-100%); }
+            .sidebar.open { transform: translateX(0); }
+            .sidebar-overlay.open { position: fixed; inset: 0; z-index: 90; display: block; background: rgba(15,23,42,.4); }
+            .main-area { width: 100%; margin-left: 0; }
+            .mobile-menu-button { display: inline-flex; }
+            .lower-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 560px) {
+            .topbar { min-height: 66px; padding: 10px 14px; }
+            .topbar-right { gap: 7px; }
+            .user-info, .user-chevron { display: none; }
+            .notification-button { width: 37px; height: 37px; }
+            .avatar { width: 38px; height: 38px; }
+            .content { padding: 21px 15px; }
+            .welcome-row { display: block; }
+            .date-label { display: inline-block; margin-top: 15px; }
+            .hero-card { min-height: auto; padding: 23px; }
+            .hero-art { display: none; }
+            .hero-card h2 { font-size: 23px; }
+            .stats-grid { gap: 10px; margin-top: 17px; }
+            .stat-card { padding: 15px; }
+            .stat-value { font-size: 24px; }
+            .stat-icon { width: 32px; height: 32px; font-size: 15px; }
+            .courses-grid { grid-template-columns: 1fr; }
+            .course-description { min-height: auto; }
+            .section-heading h2 { font-size: 17px; }
+            .panel { padding: 17px; }
+            .activity-time { display: none; }
+            .footer { align-items: flex-start; flex-direction: column; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                animation-duration: .01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: .01ms !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Authentication gate: use the same demo session as index.html. -->
+    <script>
+        (() => {
+            "use strict";
+
+            const ACCOUNT_KEY = "aiAfricaDemoAccount";
+            const SESSION_KEY = "aiAfricaDemoSession";
+
+            let user = null;
+
+            try {
+                const account = JSON.parse(localStorage.getItem(ACCOUNT_KEY) || "null");
+                const session = JSON.parse(sessionStorage.getItem(SESSION_KEY) || "null");
+
+                if (
+                    account &&
+                    session &&
+                    typeof account.email === "string" &&
+                    typeof session.email === "string" &&
+                    account.email.trim().toLowerCase() === session.email.trim().toLowerCase()
+                ) {
+                    user = account;
+                }
+            } catch {
+                user = null;
+            }
+
+            if (!user) {
+                document.documentElement.style.visibility = "hidden";
+                window.location.replace("index.html?auth=signin");
+                return;
+            }
+
+            window.aiAfricaCurrentUser = user;
+            window.aiAfricaAuthVerified = true;
+        })();
+    </script>
+
+    <div class="app-shell" id="appShell">
+        <aside class="sidebar" id="sidebar">
+            <a href="index.html" class="brand" aria-label="AI Africa home">
+                <span class="brand-mark">AI</span>
+                <h1 class="brand-name">AI <span>Africa</span></h1>
+            </a>
+
+            <p class="sidebar-label">Learning space</p>
+
+            <nav aria-label="Main navigation">
+                <ul class="nav-list">
+                    <li>
+                        <a href="learning-progress.html" class="nav-link active" aria-current="page">
+                            <span class="nav-icon">▦</span>
+                            <span>My Dashboard</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html#popularLessons" class="nav-link">
+                            <span class="nav-icon">▤</span>
+                            <span>Explore Tutorials</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="index.html#allLessons" class="nav-link">
+                            <span class="nav-icon">▣</span>
+                            <span>All Tutorials</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#achievements" class="nav-link">
+                            <span class="nav-icon">🏆</span>
+                            <span>Achievements</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#recentActivity" class="nav-link">
+                            <span class="nav-icon">◷</span>
+                            <span>Recent Activity</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <p class="sidebar-label">AI Africa</p>
+
+            <nav aria-label="AI Africa links">
+                <ul class="nav-list">
+                    <li><a href="about.html" class="nav-link"><span class="nav-icon">ⓘ</span><span>About AI Africa</span></a></li>
+                    <li><a href="contact.html" class="nav-link"><span class="nav-icon">✉</span><span>Contact Support</span></a></li>
+                </ul>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <div class="help-card">
+                    <h3>Need a little help?</h3>
+                    <p>Keep learning, explore new skills, and take your next step into AI.</p>
+                    <a href="index.html#allLessons" class="help-link">Discover tutorials →</a>
+                </div>
+            </div>
+        </aside>
+
+        <div class="sidebar-overlay" id="sidebarOverlay" aria-hidden="true"></div>
+
+        <main class="main-area">
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="mobile-menu-button" id="mobileMenuButton" type="button" aria-label="Open navigation" aria-expanded="false">☰</button>
+                    <div class="breadcrumb">AI Africa / <strong>My Dashboard</strong></div>
+                </div>
+
+                <div class="topbar-right">
+                    <button class="notification-button" id="notificationButton" type="button" aria-label="View notifications" title="Notifications">♧</button>
+
+                    <div class="user-area">
+                        <button class="user-button" id="userButton" type="button" aria-expanded="false" aria-controls="profileDropdown">
+                            <span class="avatar">
+                                <span id="avatarInitials">U</span>
+                                <span class="online-dot" aria-label="Signed in"></span>
+                            </span>
+                            <span class="user-info">
+                                <strong id="headerUserName">Learner</strong>
+                                <span>AI Africa Learner</span>
+                            </span>
+                            <span class="user-chevron">▼</span>
+                        </button>
+
+                        <div class="profile-dropdown" id="profileDropdown" hidden>
+                            <div class="dropdown-user">
+                                <strong id="dropdownUserName">Learner</strong>
+                                <span id="dropdownUserEmail"></span>
+                            </div>
+                            <a href="learning-progress.html" class="dropdown-action">My Learning Progress</a>
+                            <a href="index.html" class="dropdown-action">Back to Home</a>
+                            <button class="dropdown-action danger" id="signOutButton" type="button">Sign Out</button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content">
+                <div class="notice" id="welcomeNotice" role="status" hidden>
+                    Welcome to your AI Africa learning dashboard.
+                </div>
+
+                <div class="notice error" id="dashboardError" role="alert" hidden></div>
+
+                <section class="welcome-row">
+                    <div>
+                        <p class="eyebrow">Your learning journey</p>
+                        <h1 class="page-title">Welcome back, <span id="welcomeName">Learner</span>!</h1>
+                        <p class="welcome-description">
+                            Track your actual tutorial activity, continue learning,
+                            and celebrate each milestone as you build your digital skills.
+                        </p>
+                    </div>
+                    <div class="date-label" id="currentDate">Your learning dashboard</div>
+                </section>
+
+                <section class="hero-card">
+                    <div class="hero-copy">
+                        <span class="hero-badge">Keep moving forward</span>
+                        <h2>Your next big idea starts with learning.</h2>
+                        <p>
+                            Explore artificial intelligence, learn practical digital skills,
+                            and turn your ideas into real solutions.
+                        </p>
+                        <a href="index.html#allLessons" class="button button-primary">
+                            Explore Tutorials <span aria-hidden="true">→</span>
+                        </a>
+                    </div>
+                    <div class="hero-art" aria-hidden="true">🚀</div>
+                </section>
+
+                <section class="stats-grid" aria-label="Learning statistics">
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-label">Tutorials Started</span>
+                            <span class="stat-icon">📚</span>
+                        </div>
+                        <strong class="stat-value" id="coursesStarted">0</strong>
+                        <span class="stat-note">Unique tutorials opened</span>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-label">Tutorials Completed</span>
+                            <span class="stat-icon">✅</span>
+                        </div>
+                        <strong class="stat-value" id="coursesCompleted">0</strong>
+                        <span class="stat-note">Tutorials with recorded completion</span>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-label">Lessons Completed</span>
+                            <span class="stat-icon">📝</span>
+                        </div>
+                        <strong class="stat-value" id="lessonsCompleted">0</strong>
+                        <span class="stat-note">Recorded on this browser</span>
+                    </article>
+
+                    <article class="stat-card">
+                        <div class="stat-top">
+                            <span class="stat-label">Learning Points</span>
+                            <span class="stat-icon">⭐</span>
+                        </div>
+                        <strong class="stat-value" id="learningPoints">0</strong>
+                        <span class="stat-note">10 points per completed tutorial</span>
+                    </article>
+                </section>
+
+                <section class="courses-section" id="myCourses">
+                    <div class="section-heading">
+                        <div>
+                            <h2>Your Tutorial Progress</h2>
+                            <p>Progress is based on the tutorials and videos you actually use.</p>
+                        </div>
+                        <a href="index.html#allLessons" class="text-link">Browse tutorials →</a>
+                    </div>
+
+                    <div class="courses-grid" id="coursesGrid" aria-live="polite">
+                        <div class="empty-state">Loading your learning progress...</div>
+                    </div>
+                </section>
+
+                <div class="lower-grid">
+                    <section class="panel" id="recentActivity">
+                        <div class="panel-heading">
+                            <h2>Recent Activity</h2>
+                            <span id="activityCount">0 activities</span>
+                        </div>
+                        <div class="activity-list" id="activityList">
+                            <div class="empty-state">Your learning activity will appear here.</div>
+                        </div>
+                    </section>
+
+                    <section class="panel" id="achievements">
+                        <div class="panel-heading">
+                            <h2>Achievements</h2>
+                            <span id="achievementCount">0 of 3 unlocked</span>
+                        </div>
+
+                        <div class="achievement-list">
+                            <div class="achievement locked" id="achievementFirst">
+                                <div class="achievement-icon">🌱</div>
+                                <div class="achievement-copy">
+                                    <strong>First Steps</strong>
+                                    <span>Complete your first tutorial</span>
+                                </div>
+                                <span class="achievement-status">Locked</span>
+                            </div>
+
+                            <div class="achievement locked" id="achievementFive">
+                                <div class="achievement-icon">🔥</div>
+                                <div class="achievement-copy">
+                                    <strong>Knowledge Builder</strong>
+                                    <span>Complete five tutorials</span>
+                                </div>
+                                <span class="achievement-status">Locked</span>
+                            </div>
+
+                            <div class="achievement locked" id="achievementCourse">
+                                <div class="achievement-icon">🏆</div>
+                                <div class="achievement-copy">
+                                    <strong>AI Explorer</strong>
+                                    <span>Complete ten tutorials</span>
+                                </div>
+                                <span class="achievement-status">Locked</span>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+
+                <footer class="footer">
+                    <span>© <span id="footerYear"></span> AI Africa. Learn today. Build tomorrow.</span>
+                    <div class="footer-links">
+                        <a href="about.html">About</a>
+                        <a href="contact.html">Support</a>
+                        <a href="privacy.html">Privacy</a>
+                    </div>
+                </footer>
+            </div>
+        </main>
+    </div>
+
+    <!-- Shared lesson catalogue and progress system -->
+    <script src="courses.js"></script>
+    <script src="learning-core.js"></script>
+
+    <script>
+        (() => {
+            "use strict";
+
+            if (!window.aiAfricaAuthVerified || !window.aiAfricaCurrentUser) {
+                return;
+            }
+
+            const $ = (id) => document.getElementById(id);
+            const user = window.aiAfricaCurrentUser;
+            const SESSION_KEY = "aiAfricaDemoSession";
+
+            const elements = {
+                welcomeName: $("welcomeName"),
+                headerUserName: $("headerUserName"),
+                avatarInitials: $("avatarInitials"),
+                dropdownUserName: $("dropdownUserName"),
+                dropdownUserEmail: $("dropdownUserEmail"),
+                currentDate: $("currentDate"),
+                footerYear: $("footerYear"),
+                coursesStarted: $("coursesStarted"),
+                coursesCompleted: $("coursesCompleted"),
+                lessonsCompleted: $("lessonsCompleted"),
+                learningPoints: $("learningPoints"),
+                coursesGrid: $("coursesGrid"),
+                activityList: $("activityList"),
+                activityCount: $("activityCount"),
+                achievementCount: $("achievementCount"),
+                userButton: $("userButton"),
+                profileDropdown: $("profileDropdown"),
+                signOutButton: $("signOutButton"),
+                mobileMenuButton: $("mobileMenuButton"),
+                sidebar: $("sidebar"),
+                sidebarOverlay: $("sidebarOverlay"),
+                notificationButton: $("notificationButton"),
+                welcomeNotice: $("welcomeNotice"),
+                dashboardError: $("dashboardError")
+            };
+
+            const progressAPI = window.AIAfricaProgress;
+
+            function showError(message) {
+                elements.dashboardError.textContent = message;
+                elements.dashboardError.hidden = false;
+            }
+
+            if (!progressAPI || typeof progressAPI.load !== "function") {
+                showError(
+                    "The learning progress system could not be loaded. " +
+                    "Check that learning-core.js and courses.js are available."
+                );
+                return;
+            }
+
+            function fullName(account) {
+                const name = [account.firstName, account.lastName]
+                    .filter(Boolean)
+                    .join(" ")
+                    .trim();
+
+                return name || account.email || "Learner";
+            }
+
+            function initials(account) {
+                const first = String(account.firstName || "").trim().charAt(0);
+                const last = String(account.lastName || "").trim().charAt(0);
+                return (first + last).toUpperCase() || "U";
+            }
+
+            function getLessons() {
+                const lessons = progressAPI.getLessons();
+                return Array.isArray(lessons) ? lessons : [];
+            }
+
+            function getState() {
+                return progressAPI.load();
+            }
+
+            function getTotals(state, lessons) {
+                const completedIDs = new Set(state.completed || []);
+                const openedIDs = new Set(state.opened || []);
+
+                return {
+                    total: lessons.length,
+                    started: lessons.filter((lesson) => openedIDs.has(lesson.id)).length,
+                    completed: lessons.filter((lesson) => completedIDs.has(lesson.id)).length
+                };
+            }
+
+            function renderUser() {
+                const name = fullName(user);
+                elements.welcomeName.textContent = String(user.firstName || name.split(" ")[0]);
+                elements.headerUserName.textContent = name;
+                elements.avatarInitials.textContent = initials(user);
+                elements.dropdownUserName.textContent = name;
+                elements.dropdownUserEmail.textContent = user.email || "";
+            }
+
+            function renderDate() {
+                const now = new Date();
+
+                elements.currentDate.textContent =
+                    new Intl.DateTimeFormat(undefined, {
+                        weekday: "short",
+                        month: "short",
+                        day: "numeric",
+                        year: "numeric"
+                    }).format(now);
+
+                elements.footerYear.textContent = String(now.getFullYear());
+            }
+
+            function renderStats(state, lessons) {
+                const totals = getTotals(state, lessons);
+
+                elements.coursesStarted.textContent = String(totals.started);
+                elements.coursesCompleted.textContent = String(totals.completed);
+                elements.lessonsCompleted.textContent = String(totals.completed);
+                elements.learningPoints.textContent = String(totals.completed * 10);
+            }
+
+            function getProgress(lesson, state) {
+                if ((state.completed || []).includes(lesson.id)) {
+                    return 100;
+                }
+
+                const record = state.watch && state.watch[lesson.id];
+                if (!record) return 0;
+
+                const duration = Number(record.duration) || 0;
+                const position = Number(record.lastPosition) || 0;
+
+                if (duration <= 0) return 0;
+
+                return Math.max(0, Math.min(99, Math.round(position / duration * 100)));
+            }
+
+            function makeElement(tag, className, text) {
+                const node = document.createElement(tag);
+                if (className) node.className = className;
+                if (text !== undefined) node.textContent = text;
+                return node;
+            }
+
+            function renderLessons(state) {
+                const lessons = getLessons();
+                elements.coursesGrid.replaceChildren();
+
+                if (!lessons.length) {
+                    elements.coursesGrid.appendChild(
+                        makeElement(
+                            "div",
+                            "empty-state",
+                            "No tutorials are available yet. Visit the homepage to explore AI Africa."
+                        )
+                    );
+                    return;
+                }
+
+                lessons.forEach((lesson) => {
+                    const percent = getProgress(lesson, state);
+                    const completed = (state.completed || []).includes(lesson.id);
+                    const record = state.watch && state.watch[lesson.id];
+                    const duration = Number(record && record.duration) || 0;
+                    const position = Number(record && record.lastPosition) || 0;
+                    const hasVideo = Boolean(lesson.videoId);
+
+                    const card = makeElement("article", "course-card");
+
+                    const cover = makeElement("div", "course-cover");
+                    const symbol = makeElement("span", "course-symbol", "▶");
+                    symbol.setAttribute("aria-hidden", "true");
+
+                    const category = makeElement(
+                        "span",
+                        "course-category",
+                        String(lesson.category || "AI TUTORIAL").toUpperCase()
+                    );
+
+                    cover.append(symbol, category);
+
+                    const body = makeElement("div", "course-body");
+                    const title = makeElement("h3", "", lesson.title || "AI Africa Tutorial");
+                    const description = makeElement(
+                        "p",
+                        "course-description",
+                        lesson.description || "Explore this AI Africa learning tutorial."
+                    );
+
+                    const progressHeading = makeElement("div", "course-progress-heading");
+                    progressHeading.append(
+                        makeElement("span", "", completed ? "Completed" : "Video progress"),
+                        makeElement("strong", "", percent + "%")
+                    );
+
+                    const track = makeElement("div", "progress-track");
+                    track.setAttribute("role", "progressbar");
+                    track.setAttribute("aria-label", (lesson.title || "Tutorial") + " progress");
+                    track.setAttribute("aria-valuemin", "0");
+                    track.setAttribute("aria-valuemax", "100");
+                    track.setAttribute("aria-valuenow", String(percent));
+
+                    const fill = makeElement("div", "progress-fill");
+                    fill.style.width = percent + "%";
+                    track.appendChild(fill);
+
+                    const footer = makeElement("div", "course-footer");
+
+                    let progressText = "Not started";
+                    if (completed) {
+                        progressText = "Completed";
+                    } else if (position > 0 && duration > 0) {
+                        progressText = "Resume at " + Math.floor(position / 60) +
+                            ":" + String(Math.floor(position % 60)).padStart(2, "0");
+                    } else if ((state.opened || []).includes(lesson.id)) {
+                        progressText = "Started";
+                    }
+
+                    const count = makeElement("span", "lesson-count", progressText);
+                    const button = makeElement(
+                        "button",
+                        "course-action",
+                        !hasVideo ? "Video unavailable" :
+                            completed ? "Review Tutorial ↗" :
+                            position > 0 ? "Continue Watching →" : "Watch Tutorial →"
+                    );
+
+                    button.type = "button";
+                    button.disabled = !hasVideo;
+                    button.setAttribute("aria-label", "Open tutorial: " + (lesson.title || "Tutorial"));
+
+                    if (!hasVideo) {
+                        button.title = "A YouTube video has not been assigned to this tutorial yet.";
+                        button.style.opacity = ".55";
+                        button.style.cursor = "not-allowed";
+                    }
+
+                    button.addEventListener("click", () => {
+                        if (!hasVideo) return;
+
+                        // Open the homepage, where the shared YouTube modal exists.
+                        // script.js should read ?lesson=<lesson-id> and open this tutorial.
+                        const target = new URL("index.html", window.location.href);
+                        target.searchParams.set("lesson", lesson.id);
+                        window.location.href = target.href;
+                    });
+
+                    footer.append(count, button);
+                    body.append(title, description, progressHeading, track, footer);
+                    card.append(cover, body);
+                    elements.coursesGrid.appendChild(card);
+                });
+            }
+
+            function relativeTime(dateString) {
+                const date = new Date(dateString);
+                if (Number.isNaN(date.getTime())) return "";
+
+                const minutes = Math.max(0, Math.floor((Date.now() - date.getTime()) / 60000));
+
+                if (minutes < 1) return "Just now";
+                if (minutes < 60) return minutes + "m ago";
+
+                const hours = Math.floor(minutes / 60);
+                if (hours < 24) return hours + "h ago";
+
+                const days = Math.floor(hours / 24);
+                if (days < 7) return days + "d ago";
+
+                return date.toLocaleDateString();
+            }
+
+            function renderActivity(state) {
+                const activity = Array.isArray(state.activity) ? state.activity : [];
+                elements.activityList.replaceChildren();
+
+                elements.activityCount.textContent =
+                    activity.length + (activity.length === 1 ? " activity" : " activities");
+
+                if (!activity.length) {
+                    elements.activityList.appendChild(
+                        makeElement(
+                            "div",
+                            "empty-state",
+                            "Your activity will appear here after you open a tutorial or complete a video."
+                        )
+                    );
+                    return;
+                }
+
+                activity.slice(0, 6).forEach((item) => {
+                    const row = makeElement("div", "activity-item");
+                    const icon = makeElement(
+                        "div",
+                        "activity-icon",
+                        item.type === "completed" ? "✅" : "📘"
+                    );
+                    icon.setAttribute("aria-hidden", "true");
+
+                    const text = makeElement("div", "activity-text");
+                    const title = makeElement(
+                        "strong",
+                        "",
+                        item.title || "Learning activity"
+                    );
+                    const description = makeElement(
+                        "p",
+                        "",
+                        item.description || ""
+                    );
+
+                    const time = makeElement("span", "activity-time", relativeTime(item.date));
+                    text.append(title, description);
+                    row.append(icon, text, time);
+                    elements.activityList.appendChild(row);
+                });
+            }
+
+            function setAchievement(id, unlocked) {
+                const card = $(id);
+                if (!card) return;
+
+                card.classList.toggle("locked", !unlocked);
+                const status = card.querySelector(".achievement-status");
+
+                if (status) {
+                    status.textContent = unlocked ? "Unlocked" : "Locked";
+                }
+            }
+
+            function renderAchievements(state, lessons) {
+                const completedCount = (state.completed || []).filter((id) =>
+                    lessons.some((lesson) => lesson.id === id)
+                ).length;
+
+                const first = completedCount >= 1;
+                const five = completedCount >= 5;
+                const ten = completedCount >= 10;
+
+                setAchievement("achievementFirst", first);
+                setAchievement("achievementFive", five);
+                setAchievement("achievementCourse", ten);
+
+                const count = [first, five, ten].filter(Boolean).length;
+                elements.achievementCount.textContent = count + " of 3 unlocked";
+            }
+
+            function renderDashboard() {
+                const lessons = getLessons();
+                const state = getState();
+
+                renderUser();
+                renderDate();
+                renderStats(state, lessons);
+                renderLessons(state);
+                renderActivity(state);
+                renderAchievements(state, lessons);
+            }
+
+            // Profile dropdown.
+            elements.userButton.addEventListener("click", () => {
+                const open = elements.profileDropdown.hidden;
+                elements.profileDropdown.hidden = !open;
+                elements.userButton.setAttribute("aria-expanded", String(open));
+            });
+
+            document.addEventListener("click", (event) => {
+                if (!event.target.closest(".user-area")) {
+                    elements.profileDropdown.hidden = true;
+                    elements.userButton.setAttribute("aria-expanded", "false");
+                }
+            });
+
+            // Sign out but retain learning progress on this device.
+            elements.signOutButton.addEventListener("click", () => {
+                try {
+                    sessionStorage.removeItem(SESSION_KEY);
+                } catch (error) {
+                    console.error("Could not clear the demo session.", error);
+                }
+
+                window.location.replace("index.html");
+            });
+
+            // Mobile navigation.
+            function setMobileMenu(open) {
+                elements.sidebar.classList.toggle("open", open);
+                elements.sidebarOverlay.classList.toggle("open", open);
+
+                elements.mobileMenuButton.setAttribute("aria-expanded", String(open));
+                elements.mobileMenuButton.setAttribute(
+                    "aria-label",
+                    open ? "Close navigation" : "Open navigation"
+                );
+            }
+
+            elements.mobileMenuButton.addEventListener("click", () => {
+                setMobileMenu(!elements.sidebar.classList.contains("open"));
+            });
+
+            elements.sidebarOverlay.addEventListener("click", () => {
+                setMobileMenu(false);
+            });
+
+            elements.sidebar.querySelectorAll("a").forEach((link) => {
+                link.addEventListener("click", () => setMobileMenu(false));
+            });
+
+            elements.notificationButton.addEventListener("click", () => {
+                window.alert("You are all caught up! Learning notifications will appear here when enabled.");
+            });
+
+            document.addEventListener("keydown", (event) => {
+                if (event.key === "Escape") {
+                    elements.profileDropdown.hidden = true;
+                    elements.userButton.setAttribute("aria-expanded", "false");
+                    setMobileMenu(false);
+                }
+            });
+
+            // Keep the dashboard in sync when the shared progress system changes.
+            window.addEventListener("aiAfricaProgressUpdated", renderDashboard);
+            window.addEventListener("focus", renderDashboard);
+            window.addEventListener("storage", renderDashboard);
+
+            const params = new URLSearchParams(window.location.search);
+            if (params.get("welcome") === "1") {
+                elements.welcomeNotice.hidden = false;
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+
+            renderDashboard();
+        })();
+    </script>
+</body>
+</html>
